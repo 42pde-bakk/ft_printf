@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
@@ -6,7 +7,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/27 22:51:36 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/28 21:40:06 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +19,75 @@ t_map	*ft_initmap(void)
 
 	map = malloc(sizeof(t_map));
 	map->pos = 0;
-	map->type = "s";
 	map->size = 0;
+	map->min = 0;
+	map->spac = 0;
+	map->zero = 0;
+	map->pad = 0;
+	map->ast = 0;
+	map->prec = 0;
+	map->l = 0;
+	map->ll = 0;
+	map->h = 0;
+	map->hh = 0;
+	map->apo = 0;
+	map->hash = 0;
+	map->plus = 0;
 	return (map);
+}
+
+void	ft_flagfinder(const char *s, t_map *map)
+{
+	if (s[map->pos] == '-')
+	{
+		map->min = 1;
+		map->pos++;
+	}
+	if (s[map->pos] == '+')
+	{
+		map->plus = 1;
+		map->pos++;
+	}
+	if (s[map->pos] == ' ')
+	{
+		map->spac = 1;
+		map->pos++;
+	}
+	if (s[map->pos] == '#')
+	{
+		map->hash = 1;
+		map->pos++;
+	}
+	if (s[map->pos] == '0')
+	{
+		map->zero = 1;
+		map->pos++;
+	}
+	if (s[map->pos] >= '0' || s[map->pos] <= 57)
+	{
+		map->pad = 1;
+		map->pos++;
+	}
+	if (s[map->pos] == '*')
+	{
+		map->ast = 1;
+		map->pos++;
+	}
+	if (s[map->pos] == '.')
+	{
+		map->prec = 1;
+		map->pos++;
+	}
 }
 
 void	ft_typefinder(const char *s, t_map *map, va_list *args)
 {
-	char	*string;
-	char	c;
-	int		i;
+	char		*string;
+	char		c;
+	int			i;
+	unsigned	o;
+	void		*ptr;
+	unsigned	x;
 
 	if (s[map->pos] == 's')
 	{
@@ -44,11 +104,34 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		i = va_arg(*args, int);
 		ft_putnbr_fd(i, 1, map);
 	}
+	if (s[map->pos] == 'x' || s[map->pos] ==  'X')
+	{
+		x = va_arg(*args, unsigned);
+		string = ft_itoa_base(x, 16, s[map->pos]);
+		ft_putstr_fd(string, 1, map);
+	}
+	if (s[map->pos] == 'o')
+	{
+		o = va_arg(*args, unsigned);
+		string = ft_itoa_base(o, 8, 'X');
+		ft_putstr_fd(string, 1, map);
+	}
+	if (s[map->pos] == 'p')
+	{
+		ptr = va_arg(*args, void *);
+		string = ft_itoa_base((unsigned long)ptr, 16, 'x');
+		ft_putstr_fd("0x", 1, map);
+		ft_putstr_fd(string, 1, map);
+	}
+	if (s[map->pos] == '%')
+		ft_putchar_fd('%', 1, map);
 }
 
 void	ft_writer(const char *s, t_map *map)
 {
 //	printf("%s\n", s);
+	if (s[map->pos - 1] == '%')
+		map->pos++;
 	while (s[map->pos])
 	{
 		if (s[map->pos] == '%')
@@ -72,21 +155,14 @@ int		ft_printf(const char *s, ...)
 
 	map = ft_initmap();
 	va_start(args, s);
+//	printf("%p\n\n", &type);
 	while (s[map->pos] != 0)
 	{
 		ft_writer(s, map);
 //		printf("%i", map->pos);
+//		ft_flagfinder(s, map);
 		ft_typefinder(s, map, &args);
 	}
 	va_end(args);
 	return (map->size);
-}
-
-int	main(void)
-{
-	char	*s;
-
-	s = "Whateverthefuck";
-	ft_printf("%s-mag je willen-%d, %i, %c\n$", s, 5, -1, 'p');
-	return (0);
 }

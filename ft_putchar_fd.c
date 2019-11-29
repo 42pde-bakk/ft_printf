@@ -6,11 +6,23 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/27 22:52:02 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/29 13:38:01 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
 void	ft_putchar_fd(char c, int fd, t_map *map)
 {
@@ -25,26 +37,10 @@ void	ft_putstr_fd(char *s, int fd, t_map *map)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar_fd(s[i], fd, map);
-		map->size++;
+		write(fd, s[i], 1);
 		i++;
+		map->size++;
 	}
-}
-
-void	ft_putendl_fd(char *s, int fd, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	if (s)
-		while (s[i])
-		{
-			write(fd, &s[i], 1);
-			map->size++;
-			i++;
-		}
-	write(fd, "\n", 1);
-	map->size++;
 }
 
 void	ft_putnbr_fd(int n, int fd, t_map *map)
