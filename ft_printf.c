@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/29 21:23:47 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/30 00:26:35 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_map	*ft_initmap(void)
 	return (map);
 }
 
-void	ft_resetmap(t_map *map)
+t_map	*ft_resetmap(t_map *map)
 {
 	map->min = 0;
 	map->spac = 0;
@@ -50,7 +50,7 @@ void	ft_resetmap(t_map *map)
 	map->apo = 0;
 	map->hash = 0;
 	map->plus = 0;
-	return ;
+	return (map);
 }
 
 void	ft_typefinder(const char *s, t_map *map, va_list *args)
@@ -62,28 +62,32 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	void		*ptr;
 	unsigned	x;
 
+	if (s[map->pos] == '%')
+	{
+		ft_putchar_fd('%', 1, map, 1);
+		map->pos++;
+		return ;
+	}
 	if (s[map->pos] == 's')
 	{
 		string = va_arg(*args, char *);
 		ft_putstr_fd(string, 1, map);
 		map->pos++;
-	}
-	if (s[map->pos] == '%')
-	{
-		ft_putchar_fd('%', 1, map, 1);
-		map->pos++;
+		return ;
 	}
 	if (s[map->pos] == 'c')
 	{
 		c = va_arg(*args, int);
 		ft_putchar_fd(c, 1, map, 1);
 		map->pos++;
+		return ;
 	}
 	if (s[map->pos] == 'd' || s[map->pos] ==  'i')
 	{
 		i = va_arg(*args, int);
 		ft_putnbr_fd(i, 1, map);
 		map->pos++;
+		return ;
 	}
 	if (s[map->pos] == 'x' || s[map->pos] ==  'X')
 	{
@@ -91,6 +95,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		string = ft_itoa_base(x, 16, s[map->pos]);
 		ft_putstr_fd(string, 1, map);
 		map->pos++;
+		return ;
 	}
 	if (s[map->pos] == 'o')
 	{
@@ -98,6 +103,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		string = ft_itoa_base(o, 8, 'X');
 		ft_putstr_fd(string, 1, map);
 		map->pos++;
+		return ;
 	}
 	if (s[map->pos] == 'p')
 	{
@@ -106,6 +112,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		ft_putstr_fd("0x", 1, map);
 		ft_putstr_fd(string, 1, map);
 		map->pos++;
+		return ;
 	}
 }
 
@@ -139,6 +146,7 @@ int		ft_printf(const char *s, ...)
 //	printf("%p\n\n", &type);
 	while (s[map->pos] != 0)
 	{
+		map = ft_resetmap(map);
 		ft_writer(s, map);
 //		printf("%i", map->pos);
 		ft_flagfinder(s, map, &args);

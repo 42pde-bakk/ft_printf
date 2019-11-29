@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/29 21:23:19 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/29 23:52:28 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 
 void			*ft_memcpy(void *dst, const void *src, size_t n);
-size_t			ft_strlen(const char *s);
+int				ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 
 void			ft_putchar_fd(char c, int fd, t_map *map, int check);
@@ -53,10 +53,10 @@ void			ft_putnbr_fd(int n, int fd, t_map *map);
 char			*ft_itoa_base(unsigned long nb, unsigned long base, char c);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
-int				ft_flagfiller(int length, int fd, t_map *map);
+void			ft_flagfiller(int fd, t_map *map);
 
 t_map			*ft_initmap(void);
-void			ft_resetmap(t_map *map);
+t_map			*ft_resetmap(t_map *map);
 
 void			ft_typefinder(const char *s, t_map *map, va_list *args);
 void			ft_writer(const char *s, t_map *map);

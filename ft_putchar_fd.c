@@ -6,15 +6,15 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/29 20:55:36 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/30 00:25:37 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -27,7 +27,10 @@ size_t	ft_strlen(const char *s)
 void	ft_putchar_fd(char c, int fd, t_map *map, int check)
 {
 	if (check == 1 && map->pad > 0)
-		ft_flagfiller(1, fd, map);
+	{
+		map->pad--;
+		ft_flagfiller(fd, map);
+	}
 	write(fd, &c, 1);
 	map->size++;
 	while (check == 1 && map->min == 1 && map->pad > 0)
@@ -40,27 +43,33 @@ void	ft_putchar_fd(char c, int fd, t_map *map, int check)
 void	ft_putstr_fd(char *s, int fd, t_map *map)
 {
 	int	i;
-	int length;
-	int fill;
+//	int length;
+//	int fill;
 
 	i = 0;
-	length = ft_strlen(s);
-	fill = ft_flagfiller(length, fd, map);
+	if (ft_strlen(s) > map->prec && map->prec > -1)
+		map->pad = map->pad - map->prec;
+	else
+		map->pad = map->pad - ft_strlen(s);
+	if (map->min == 0)
+		ft_flagfiller(fd, map);
+//	printf("fill = %d\n", fill);
 	while (s[i] && map->prec == -1)
 	{
 		ft_putchar_fd(s[i], fd, map, 0);
 		i++;
 	}
-	while (map->prec > 0)
+	while (s[i] && map->prec > 0)
 	{
 		ft_putchar_fd(s[i], fd, map, 0);
 		i++;
 		map->prec--;
 	}
-	while (map->min == 1 && fill > 0)
+//	printf("padding left over = %d, fill = %d\n", map->pad, fill);
+	while (map->min == 1 && map->pad > 0)
 	{
 		ft_putchar_fd(' ', 1, map, 0);
-		fill--;
+		map->pad--;
 	}
 }
 
