@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:42:31 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/29 16:28:40 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/29 21:30:47 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(void)
 
 	ft_printf("\033[0;31m");
 	ft_printf("%% + 10 String: \n");
-	ft_printf("%7s\n", s);
-	printf("%7s\n", s);
+	ft_printf("% 7s$\n", s);
+	printf("% 7s$\n", s);
 //	ft_printf("\033[0m");
 
 	ft_printf("\033[1;31m");
@@ -54,9 +54,9 @@ int	main(void)
 //	ft_printf("\033[0m");
 
 	ft_printf("\033[1;33m");
-	ft_printf("-0. flags \n");
-	ft_printf("%-0.s\n", s);
-	printf("%-0.s\n", s);
+	ft_printf("-8.1. flags \n");
+	ft_printf("%-8.1s$\n", s);
+	printf("%-8.1s$\n", s);
 //	ft_printf("\033[0m");
 
 	return 0;
