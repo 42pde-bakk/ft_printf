@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:29:13 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/28 20:15:56 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/29 15:49:21 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_itoa_base(unsigned long nb, unsigned long base, char c)
 {
 	char				*str;
 	char				*tab;
-	int					amount;
+	unsigned long int	amount;
 	unsigned long int	sign;
 
 	sign = 0;
