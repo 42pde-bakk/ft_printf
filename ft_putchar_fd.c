@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/30 00:25:37 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/30 23:21:38 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,22 @@ void	ft_putstr_fd(char *s, int fd, t_map *map)
 	}
 }
 
-void	ft_putnbr_fd(int n, int fd, t_map *map)
+void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 {
-	if (map->plus == 1)
+	int		length;
+
+	length = ft_strlen(s);
+	if (s[0] != '-' && map->plus == 1)
+		length++;
+	if (map->prec > 
+	if (map->min == 0 && map->pad > 
+
+	while (map->pad > map->prec)
 	{
-		ft_putchar_fd('+', fd, map, 0);
-		map->plus = 0;
-}
-	if (n == -2147483648)
-	{
-		ft_putchar_fd('-', fd, map, 0);
-		ft_putchar_fd('2', fd, map, 0);
-		ft_putnbr_fd(147483648, fd, map);
+
 	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd, map, 0);
-		ft_putnbr_fd(-n, fd, map);
-	}
-	else if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd, map);
-		ft_putnbr_fd(n % 10, fd, map);
-	}
-	else
-		ft_putchar_fd(n + 48, fd, map, 0);
+
+
+	if (length < map->prec)
+
 }

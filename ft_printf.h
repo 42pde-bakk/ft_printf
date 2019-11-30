@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/29 23:52:28 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/30 22:35:47 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_map
 {
 	int		pos;
 	int		size;
+	char	type;
 	int		min;
 	int		spac;
 	int		zero;

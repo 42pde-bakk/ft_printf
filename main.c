@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:42:31 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/30 00:25:52 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/30 23:18:57 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	main(void)
 {
 	char		s1[] = "Lookie";
-	char		s2[] = "Kanker";
-	char		s3[] = "Lekker bezig ";
-	char		s4[] = "Ouwe";
+	char		s2[] = "Cancer";
+	char		s3[] = "Tasty busy";
+	char		s4[] = "Old man";
 
 	char		c1 = '&';
 	char		c2 = 'D';
@@ -47,6 +47,7 @@ int	main(void)
 	char		*str;
 
 	ft_printf("\033[0;31m");
+	printf("%07+i$\n", i1);
 	ft_printf("Strings: -Flag, 0Flag, .Flag, *Flag:\n");
 	ft_printf("%-8s$ %07s$ %.8s$ %.*s$\n", s1, s2, s3, H, s4);
 	printf("%-8s$ %07s$ %.8s$ %.*s$\n\n", s1, s2, s3, H, s4);

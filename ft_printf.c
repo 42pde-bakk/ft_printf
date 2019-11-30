@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/30 00:26:35 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/11/30 22:38:41 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_map	*ft_initmap(void)
 	map = malloc(sizeof(t_map));
 	map->pos = 0;
 	map->size = 0;
+	map->type = 'a';
 	map->min = 0;
 	map->spac = 0;
 	map->zero = 0;
@@ -39,6 +40,7 @@ t_map	*ft_resetmap(t_map *map)
 {
 	map->min = 0;
 	map->spac = 0;
+	map->type = 'a';
 	map->zero = 0;
 	map->pad = 0;
 	map->ast = 0;
@@ -62,6 +64,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	void		*ptr;
 	unsigned	x;
 
+	map->type = s[map->pos];
 	if (s[map->pos] == '%')
 	{
 		ft_putchar_fd('%', 1, map, 1);
@@ -85,7 +88,9 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 'd' || s[map->pos] ==  'i')
 	{
 		i = va_arg(*args, int);
-		ft_putnbr_fd(i, 1, map);
+		string = ft_itoa_base(i, 10, 'X');
+		ft_putstr_fd(string, 1, map);
+		free(string);
 		map->pos++;
 		return ;
 	}
@@ -94,6 +99,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		x = va_arg(*args, unsigned);
 		string = ft_itoa_base(x, 16, s[map->pos]);
 		ft_putstr_fd(string, 1, map);
+		free(string);
 		map->pos++;
 		return ;
 	}
@@ -102,6 +108,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 8, 'X');
 		ft_putstr_fd(string, 1, map);
+		free(string);
 		map->pos++;
 		return ;
 	}
@@ -111,6 +118,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 		string = ft_itoa_base((unsigned long)ptr, 16, 'x');
 		ft_putstr_fd("0x", 1, map);
 		ft_putstr_fd(string, 1, map);
+		free(string);
 		map->pos++;
 		return ;
 	}
