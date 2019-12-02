@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/30 22:35:47 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 14:44:09 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,25 @@
 
 typedef struct	s_map
 {
-	int		pos;
-	int		size;
-	char	type;
-	int		min;
-	int		spac;
-	int		zero;
-	int		pad;
-	int		ast;
-	int		prec;
-	int		l;
-	int		ll;
-	int		h;
-	int		hh;
-	int		apo;
-	int		hash;
-	int		plus;
+	int				pos;
+	int				size;
+	char			type;
+	int				min;
+	int				spac;
+	int				zero;
+	int				width;
+	int				pad;
+	int				ast;
+	int				prec;
+	int				pfill;
+	int				l;
+	int				ll;
+	int				h;
+	int				hh;
+	int				apo;
+	int				hash;
+	int				plus;
+	unsigned long	nb;
 }				t_map;
 
 void			*ft_memset(void *b, int c, size_t len);
@@ -47,14 +50,14 @@ int				ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 
 void			ft_putchar_fd(char c, int fd, t_map *map, int check);
-void			ft_putstr_fd(char *s, int fd, t_map *map);
+void			ft_putstr_fd(char *s, int fd, t_map *map, int check);
 void			ft_putendl_fd(char *s, int fd, t_map *map);
-void			ft_putnbr_fd(int n, int fd, t_map *map);
+void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 
-char			*ft_itoa_base(unsigned long nb, unsigned long base, char c);
+char			*ft_itoa_base(unsigned long nb, unsigned long base, t_map *map, char c);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
-void			ft_flagfiller(int fd, t_map *map);
+void			ft_flagfiller(int fd, t_map *map, char *s);
 
 t_map			*ft_initmap(void);
 t_map			*ft_resetmap(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/30 22:38:41 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 15:29:48 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ t_map	*ft_initmap(void)
 	map->min = 0;
 	map->spac = 0;
 	map->zero = 0;
+	map->width = 0;
 	map->pad = 0;
 	map->ast = 0;
 	map->prec = -1;
+	map->pfill = 0;
 	map->l = 0;
 	map->ll = 0;
 	map->h = 0;
@@ -33,6 +35,7 @@ t_map	*ft_initmap(void)
 	map->apo = 0;
 	map->hash = 0;
 	map->plus = 0;
+	map->nb = 0;
 	return (map);
 }
 
@@ -42,9 +45,11 @@ t_map	*ft_resetmap(t_map *map)
 	map->spac = 0;
 	map->type = 'a';
 	map->zero = 0;
+	map->width = 0;
 	map->pad = 0;
 	map->ast = 0;
 	map->prec = -1;
+	map->pfill = 0;
 	map->l = 0;
 	map->ll = 0;
 	map->h = 0;
@@ -52,6 +57,7 @@ t_map	*ft_resetmap(t_map *map)
 	map->apo = 0;
 	map->hash = 0;
 	map->plus = 0;
+	map->nb = 0;
 	return (map);
 }
 
@@ -74,7 +80,7 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 's')
 	{
 		string = va_arg(*args, char *);
-		ft_putstr_fd(string, 1, map);
+		ft_putstr_fd(string, 1, map, 1);
 		map->pos++;
 		return ;
 	}
@@ -88,8 +94,8 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 'd' || s[map->pos] ==  'i')
 	{
 		i = va_arg(*args, int);
-		string = ft_itoa_base(i, 10, 'X');
-		ft_putstr_fd(string, 1, map);
+		string = ft_itoa_base(i, 10, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
 		free(string);
 		map->pos++;
 		return ;
@@ -97,8 +103,8 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 'x' || s[map->pos] ==  'X')
 	{
 		x = va_arg(*args, unsigned);
-		string = ft_itoa_base(x, 16, s[map->pos]);
-		ft_putstr_fd(string, 1, map);
+		string = ft_itoa_base(x, 16, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
 		free(string);
 		map->pos++;
 		return ;
@@ -106,8 +112,8 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 'o')
 	{
 		o = va_arg(*args, unsigned);
-		string = ft_itoa_base(o, 8, 'X');
-		ft_putstr_fd(string, 1, map);
+		string = ft_itoa_base(o, 8, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
 		free(string);
 		map->pos++;
 		return ;
@@ -115,9 +121,9 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 'p')
 	{
 		ptr = va_arg(*args, void *);
-		string = ft_itoa_base((unsigned long)ptr, 16, 'x');
-		ft_putstr_fd("0x", 1, map);
-		ft_putstr_fd(string, 1, map);
+		string = ft_itoa_base((unsigned long)ptr, 16, map, s[map->pos]);
+//		ft_putstr_fd("0x", 1, map, 1);
+		ft_putstr_fd(string, 1, map, 0);
 		free(string);
 		map->pos++;
 		return ;
@@ -137,7 +143,6 @@ void	ft_writer(const char *s, t_map *map)
 			return ;
 		}
 		ft_putchar_fd(s[map->pos], 1, map, 0);
-		map->size++;
 		map->pos++;
 //		printf("%d\n", pos);
 	}
