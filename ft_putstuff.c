@@ -6,13 +6,13 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 19:07:26 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 21:33:27 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(const char *s)
+int		ft_strlen(const char *s)
 {
 	int	i;
 
@@ -29,7 +29,6 @@ void	ft_putchar_fd(char c, int fd, t_map *map, int check)
 	if (check == 1 && map->width > 0)
 	{
 		map->width--;
-//		ft_flagfiller(fd, map, &c);
 		while (map->min == 0 && map->width > 0)
 		{
 			if (map->zero == 0)
@@ -55,10 +54,8 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 	i = 0;
 	if (check == 1)
 		ft_flagfiller(fd, map, s);
-//	printf("map->prec = %d\n", map->prec);
 	while (s[i] && (map->prec == -1 || check == 0))
 	{
-//		printf("hawha \n");
 		ft_putchar_fd(s[i], fd, map, 0);
 		i++;
 	}
@@ -75,7 +72,7 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 		ft_putchar_fd(' ', 1, map, 0);
 		map->pad--;
 	}
-//	free(s);
+	free(s);
 }
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
@@ -104,5 +101,5 @@ void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 		ft_putchar_fd(' ', fd, map, 0);
 		map->pad--;
 	}
-//	free(s);
+	free(s);
 }

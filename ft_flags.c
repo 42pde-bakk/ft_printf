@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/02 20:47:11 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 21:34:03 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_bonusflagfinder(const char *s, t_map *map, va_list *args)
 		map->pos++;
 	}
 }
+
 void	ft_thirdflagfinder(const char *s, t_map *map, va_list *args)
 {
 	while (s[map->pos] >= '0' && s[map->pos] <= '9' && s[map->pos - 1] != '.')
@@ -107,7 +108,6 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 void	ft_flagfiller(int fd, t_map *map, char *s)
 {
 	map->pad = map->width - ft_strlen(s);
-//	printf("map->pad = %d\n", map->pad);
 	while (map->min == 0 && map->pad > 0)
 	{
 		if (map->zero == 1)

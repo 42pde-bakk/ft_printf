@@ -153,28 +153,38 @@ int	main(void)
 	ft_printf("\033[0;36m");
 	ft_printf("Duplicate flags: %--i, %###X, %009s, %**i$\n", -20, 67, s2, 7, 8, 90127);
 	printf("Duplicate flags: %--i, %###X, %009s, %**i$\n", -20, 67, s2, 7, 8, 90127);
+
 	ft_printf("\033[1;36m");
 	ft_printf("Now for the bonus tests:\n\n");
+
 	ft_printf("\033[0;31m");
 	ft_printf("Testing the n flag\n");
 	ft_printf("%s - 123456789%n\n", "voorbeeldstring1", &n2);
 	ft_printf("%i\n", n2);
 	printf("%s - 123456789%n\n", "voorbeeldstring2", &n1);
 	printf("%i\n", n1);
+
 	ft_printf("\033[1;31m");
 	ft_printf("This time, give it up for floats:\n\n");
 	ft_printf("%f\n", 10.9);
 	printf("%f\n", 10.9);
+
 	ft_printf("\033[0;32m");
 	ft_printf("Whatever a g-flag may be...:\n\n");
+
 	ft_printf("\033[1;32m");
 	ft_printf("E is for scientific notation right?\n\n");
+
 	ft_printf("\033[0;33m");
 	ft_printf("Starting with l and ll flags:\n\n");
+	printf("%li"
+
 	ft_printf("\033[1;33m");
 	ft_printf("Now some h and hh flags:\n\n");
+
 	ft_printf("\033[0;34m");
 	ft_printf("# and + are easy but w/e:\n\n");
+
 	ft_printf("\033[0;34m");
 	ft_printf(" ' flags and \\  :\n\n");
 	return 0;
