@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 21:33:27 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 23:13:24 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	ft_putchar_fd(char c, int fd, t_map *map, int check)
 		while (map->min == 0 && map->width > 0)
 		{
 			if (map->zero == 0)
-				write(fd, " ", 1);
+				ft_putchar_fd(' ', fd, map, 0);
 			else
-				write(fd, "0", 1);
+				ft_putchar_fd('0', fd, map, 0);
 			map->width--;
 		}
 	}
@@ -42,7 +42,7 @@ void	ft_putchar_fd(char c, int fd, t_map *map, int check)
 	map->size++;
 	while (check == 1 && map->min == 1 && map->width > 0)
 	{
-		write(1, " ", 1);
+		ft_putchar_fd(' ', fd, map, 0);
 		map->width--;
 	}
 }
@@ -72,7 +72,7 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 		ft_putchar_fd(' ', 1, map, 0);
 		map->pad--;
 	}
-	free(s);
+//	free(s);
 }
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
@@ -101,5 +101,5 @@ void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 		ft_putchar_fd(' ', fd, map, 0);
 		map->pad--;
 	}
-	free(s);
+//	free(s);
 }
