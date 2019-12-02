@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 15:14:38 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 17:30:00 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,16 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 		map->pos++;
 //		printf("Map->zero=%d\n", map->zero);
 	}
+	if (s[map->pos] == '*')
+	{
+		map->width = va_arg(*args, int);
+//		printf("Map->pad=%d\n", map->pad);
+		map->pos++;
+	}
 	while (s[map->pos] >= '0' && s[map->pos] <= '9')
 	{
 		map->width = map->width * 10 + s[map->pos] - 48;
-		map->pos++;	
+		map->pos++;
 //		printf("Map->pad=%d\n", map->pad);
 	}
 	if (s[map->pos] == '.')
@@ -71,14 +77,8 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 
 void	ft_flagfiller(int fd, t_map *map, char *s)
 {
-/* Moet nog toevoegen dat hij ook spaties kan printen als er geen flag wordt meegegeven*/
-
-/*    if (map->prec > ft_strlen(s))
-	  map->pfill = map->prec - ft_strlen(s); */
-    if (map->width > ft_strlen(s) && map->width > map->prec)
-        map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
-			: map->width - ft_strlen(s);
-	while (map->pad > 0 && map->min == 0)
+	map->pad = map->width - ft_strlen(s);
+	while (map->min == 0 && map->pad > 0)
 	{
 		if (map->zero == 1)
 			ft_putchar_fd('0', fd, map, 0);

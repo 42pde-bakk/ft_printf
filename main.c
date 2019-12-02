@@ -3,9 +3,11 @@
 int	main(void)
 {
 	char		s1[] = "Lookie";
-	char		s2[] = "Cancer";
-	char		s3[] = "Tasty busy";
+	char		s2[] = "Here";
+	char		s3[] = "Wow this is a really big string wowow";
 	char		s4[] = "Old man";
+	char		*nlptr = NULL;
+
 
 	char		c1 = '&';
 	char		c2 = 'D';
@@ -35,30 +37,28 @@ int	main(void)
 	char		*str;
 
 	ft_printf("\033[0;31m");
-	ft_printf("%06i$ %5.8i\n", i1, i2);
-	printf("%06i$ %5.8i\n", i1, i2);
 	ft_printf("Strings: -Flag, 0Flag, .Flag, *Flag:\n");
 	ft_printf("%-8s$ %07s$ %.8s$ %.*s$\n", s1, s2, s3, H, s4);
 	printf("%-8s$ %07s$ %.8s$ %.*s$\n\n", s1, s2, s3, H, s4);
-//	ft_printf("\033[0m");
+	ft_printf("\033[0m");
 
 	ft_printf("\033[1;31m");
 	ft_printf("Strings: -010Flag, +0Flag, -8.7Flag, #Flag:\n");
 	ft_printf("%-010s$ %+0s$ %-8.7s$ %#s$\n", s1, s2, s3, s4);
 	printf("%-010s$ %+0s$ %-8.7s$ %#s$\n\n", s1, s2, s3, s4);
-//	ft_printf("\033[0m");
+	ft_printf("\033[0m");
 
 	ft_printf("\033[0;32m");
 	ft_printf("Chars: -Flag, 0Flag, .Flag, *Flag:\n");
 	ft_printf("%7c$ %07c$ %.8c$ %.*c$\n", c1, c2, c3, 0, c4);
 	printf("%7c$ %07c$ %.8c$ %.*c$\n\n", c1, c2, c3, 0, c4);
-//	ft_printf("\033[0m");
+	ft_printf("\033[0m");
 
 	ft_printf("\033[1;32m");
 	ft_printf("Chars: -0Flag, +0Flag, -8.7Flag, #Flag:\n");
 	ft_printf("%-0c$ %+0c$ %-8.7c$ %#c$\n", c1, c2, c3, c4);
 	printf("%-0c$ %+0c$ %-8.7c$ %#c$\n\n", c1, c2, c3, c4);
-//	ft_printf("\033[0m");
+	ft_printf("\033[0m");
 
 	ft_printf("\033[0;33m");
 	ft_printf("Integers: -Flag, 0Flag, .Flag, *Flag:\n");
@@ -115,11 +115,41 @@ int	main(void)
 	ft_printf("\033[0m");
 
 	ft_printf("\033[1;31m");
+	ft_printf("Simply check each conversion without any flags 'cspdiuxX%'\n");
+	ft_printf("%c, %s, %p, %d, %i, %u, %x, %X, %% \n", c1, s1, &s1, i1, i2, o1, x1, X1);
+	printf("%c, %s, %p, %d, %i, %u, %x, %X, %% \n\n", c1, s1, &s1, i1, i2, o1, x1, X1);
 	ft_printf("\033[0;32m");
+	ft_printf("Try special case like 0 or smallest int or empty string or null pointer\n");
+	ft_printf("%i, %i, %s, %p $and some final words after the last conversion$\n", 0, -2147483648, "", &nlptr);
+	printf("%i, %i, %s, %p $and some final words after the last conversion$\n\n", 0, -2147483648, "", &nlptr);
+
 	ft_printf("\033[1;32m");
 	ft_printf("\033[0;33m");
+	ft_printf("Simple Flags Management:\n");
+	ft_printf("%7s, %7s, %7s, %*s$\n", s1, s2, s3, 7, s4);
+	printf("%7s, %7s, %7s, %*s$\n", s1, s2, s3, 7, s4);
 	ft_printf("\033[1;33m");
+	ft_printf("%-7s, %-7s, %-7s, %-8s$\n", s1, s2, s3, s4);
+	printf("%-7s, %-7s, %-7s, %-8s$\n", s1, s2, s3, s4);
 	ft_printf("\033[0;34m");
+	ft_printf("%07s, %07s, %07s, %07s$\n", s1, s2, s3, s4);
+	printf("%07s, %07s, %07s, %07s$\n", s1, s2, s3, s4);
 	ft_printf("\033[1;34m");
+	ft_printf("%6.8s, %8.6s, %.5s, %.23s$\n", s1, s2, s3, s4);
+	printf("%6.8s, %8.6s, %.5s, %.23s$\n\n", s1, s2, s3, s4);
+	ft_printf("\033[0m");
+	ft_printf("\033[1;33m");
+	ft_printf("Advanced Flags Management:\n");
+	ft_printf("%*s, %*s, %*s, %*s$\n", -1, s1, 0, s2, 9, s3, 7, s4);
+	printf("%*s, %*s, %*s, %*s$\n", -1, s1, 0, s2, 9, s3, 7, s4);
+	ft_printf("\033[0;34m");
+	ft_printf("Precision *: %.*s, %.*s, %.*s,%*.*s\n", -1, s1, 0, s2, 23, s3, 8, 7, s4);
+	printf("Precision *: %.*s, %.*s, %.*s,%*.*s\n\n", -1, s1, 0, s2, 23, s3, 8, 7, s4);
+	ft_printf("\033[1;34m");
+	ft_printf("Duplicate flags: %--i\n", -20);
+	printf("Duplicate flags: %--i\n", -20);
+	ft_printf("Now for the bonus tests:\n");
+	while (1)
+	{}
 	return 0;
 }

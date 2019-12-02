@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 15:29:48 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 17:32:29 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,17 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
+		free(string);
+		map->pos++;
+		return ;
+	}
+	if (s[map->pos] == 'u')
+	{
+		o = va_arg(*args, unsigned);
+//		printf("unsigned(u) = %i  ", o);
+		string = ft_itoa_base(o, 10, map, s[map->pos]);
+//		printf("unsigned = %s", o);
 		ft_nbrputter_fd(string, 1, map);
 		free(string);
 		map->pos++;

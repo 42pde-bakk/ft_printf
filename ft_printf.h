@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 14:44:09 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 16:53:32 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			ft_putstr_fd(char *s, int fd, t_map *map, int check);
 void			ft_putendl_fd(char *s, int fd, t_map *map);
 void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 
-char			*ft_itoa_base(unsigned long nb, unsigned long base, t_map *map, char c);
+char			*ft_itoa_base(long long nb, long long base, t_map *map, char c);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
 void			ft_flagfiller(int fd, t_map *map, char *s);

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 15:17:49 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 17:30:53 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 	i = 0;
 	if (check == 1)
 		ft_flagfiller(fd, map, s);
-	if (map->prec > -1)
-		map->pad = map->width - map->prec;
 	while (s[i] && (map->prec == -1 || check == 0))
 	{
 		ft_putchar_fd(s[i], fd, map, 0);
@@ -70,19 +68,29 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 		i++;
 		map->prec--;
 	}
-//	printf("");
 	while (map->min == 1 && map->pad > 0)
 	{
 		ft_putchar_fd(' ', 1, map, 0);
 		map->pad--;
 	}
+//	free(s);
 }
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 {
 	if (map->prec > ft_strlen(s))
 		map->pfill = map->prec - ft_strlen(s);
-	ft_flagfiller(fd, map, s);
+	if (map->width > ft_strlen(s) && map->width > map->prec)
+		map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
+		: map->width - ft_strlen(s);
+	while (map->pad > 0 && map->min == 0)
+	{
+		if (map->zero == 1)
+			ft_putchar_fd('0', fd, map, 0);
+		else
+			ft_putchar_fd(' ', fd, map, 0);
+		map->pad--;
+	}
 	while (map->pfill > 0)
 	{
 		ft_putchar_fd('0', fd, map, 0);
@@ -94,4 +102,5 @@ void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 		ft_putchar_fd(' ', fd, map, 0);
 		map->pad--;
 	}
+//	free(s);
 }

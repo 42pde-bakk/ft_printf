@@ -6,15 +6,15 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:29:13 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 15:27:34 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 16:57:10 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_amount(unsigned long nb, unsigned long base, t_map *map, char c)
+int		ft_amount(long long nb, long long base, t_map *map, char c)
 {
-	unsigned long	amount;
+	long long	amount;
 
 	amount = 0;
 	map->nb = nb;
@@ -37,14 +37,14 @@ int		ft_amount(unsigned long nb, unsigned long base, t_map *map, char c)
 	return (amount);
 }
 
-int		ft_absolutely(int nb)
+int		ft_absolutely(long long nb)
 {
 	if (nb < 0)
 		nb = -nb;
 	return (nb);
 }
 
-char	*ft_hashcheck(char *str, unsigned long base, t_map *map, char c)
+char	*ft_hashcheck(char *str, long long base, t_map *map, char c)
 {
 	if ((c == 'p') || (map->hash == 1 && (base == 8 || base == 16)))
 	{
@@ -62,16 +62,16 @@ char	*ft_hashcheck(char *str, unsigned long base, t_map *map, char c)
 	return (str);
 }
 
-char	*ft_itoa_base(unsigned long nb, unsigned long base, t_map *map, char c)
+char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 {
-	char				*str;
-	char				*tab;
-	unsigned long int	amount;
-	unsigned long int	sign;
+	char		*str;
+	char		*tab;
+	long long	amount;
+	long long	sign;
 
 	sign = 0;
 	amount = ft_amount(nb, base, map, c);
-	if (c == 'x')
+	if (c == 'X')
 		tab = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	else
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -79,7 +79,8 @@ char	*ft_itoa_base(unsigned long nb, unsigned long base, t_map *map, char c)
 		return (0);
 	str = (char*)ft_calloc(amount + 1, sizeof(char));
 	if (nb < 0 && base == 10)
-		str[0] = '-';
+		sign = 1;
+	str[0] = '-';
 	while (amount > sign)
 	{
 		str[amount - 1] = tab[ft_absolutely(nb % base)];
