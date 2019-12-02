@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 18:30:59 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/11/28 14:31:42 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 17:45:11 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,20 @@ void	*ft_calloc(size_t count, size_t size)
 	if (ptr)
 		ft_bzero(ptr, count * size);
 	return (ptr);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int i;
+	int len;
+
+	len = ft_strlen(s) + 1;
+	i = 0;
+	while (i < len)
+	{
+		if (s[i] == c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (0);
 }

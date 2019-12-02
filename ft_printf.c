@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 17:32:29 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 21:17:13 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_map	*ft_initmap(void)
 	map = malloc(sizeof(t_map));
 	map->pos = 0;
 	map->size = 0;
-	map->type = 'a';
 	map->min = 0;
 	map->spac = 0;
 	map->zero = 0;
@@ -43,7 +42,6 @@ t_map	*ft_resetmap(t_map *map)
 {
 	map->min = 0;
 	map->spac = 0;
-	map->type = 'a';
 	map->zero = 0;
 	map->width = 0;
 	map->pad = 0;
@@ -61,22 +59,74 @@ t_map	*ft_resetmap(t_map *map)
 	return (map);
 }
 
-void	ft_typefinder(const char *s, t_map *map, va_list *args)
+void	ft_typefinder3(const char *s, t_map *map, va_list *args)
 {
-	char		*string;
-	char		c;
-	int			i;
-	unsigned	o;
-	void		*ptr;
-	unsigned	x;
+	void				*ptr;
+	int					*n;
+	double				f;
 
-	map->type = s[map->pos];
-	if (s[map->pos] == '%')
+	if (s[map->pos] == 'p')
 	{
-		ft_putchar_fd('%', 1, map, 1);
+		ptr = va_arg(*args, void *);
+		string = ft_itoa_base((unsigned long)ptr, 16, map, s[map->pos]);
+		ft_putstr_fd(string, 1, map, 0);
+		free(string);
 		map->pos++;
 		return ;
 	}
+	if (s[map->pos] == 'n')
+	{
+		n = va_arg(*args, long long int*);
+		*n = map->size;
+		map->pos++;
+		return ;
+	}
+	if (s[map->pos] == 'f')
+	{
+		f = va_arg(*args, long double);
+		
+	}
+}
+
+void	ft_typefinder2(const char *s, t_map *map, va_list *args)
+{
+	if (s[map->pos] == 'u')
+	{
+		o = va_arg(*args, unsigned long long);
+		string = ft_itoa_base(o, 10, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
+		free(string);
+		map->pos++;
+		return ;
+	}
+	if (s[map->pos] == 'x' || s[map->pos] ==  'X')
+	{
+		o = va_arg(*args, unsigned long long);
+		string = ft_itoa_base(o, 16, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
+		free(string);
+		map->pos++;
+		return ;
+	}
+	if (s[map->pos] == 'o')
+	{
+		o = va_arg(*args, unsigned long long);
+		string = ft_itoa_base(o, 8, map, s[map->pos]);
+		ft_nbrputter_fd(string, 1, map);
+		free(string);
+		map->pos++;
+		return ;
+	}
+}
+
+void	ft_typefinder(const char *s, t_map *map, va_list *args)
+{
+	char				*string;
+	char				c;
+	long long			i;
+	unsigned long long	o;
+
+//	map->type = s[map->pos];
 	if (s[map->pos] == 's')
 	{
 		string = va_arg(*args, char *);
@@ -93,48 +143,9 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 	}
 	if (s[map->pos] == 'd' || s[map->pos] ==  'i')
 	{
-		i = va_arg(*args, int);
+		i = va_arg(*args, long long int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
 		ft_nbrputter_fd(string, 1, map);
-		free(string);
-		map->pos++;
-		return ;
-	}
-	if (s[map->pos] == 'u')
-	{
-		o = va_arg(*args, unsigned);
-//		printf("unsigned(u) = %i  ", o);
-		string = ft_itoa_base(o, 10, map, s[map->pos]);
-//		printf("unsigned = %s", o);
-		ft_nbrputter_fd(string, 1, map);
-		free(string);
-		map->pos++;
-		return ;
-	}
-	if (s[map->pos] == 'x' || s[map->pos] ==  'X')
-	{
-		x = va_arg(*args, unsigned);
-		string = ft_itoa_base(x, 16, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
-		free(string);
-		map->pos++;
-		return ;
-	}
-	if (s[map->pos] == 'o')
-	{
-		o = va_arg(*args, unsigned);
-		string = ft_itoa_base(o, 8, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
-		free(string);
-		map->pos++;
-		return ;
-	}
-	if (s[map->pos] == 'p')
-	{
-		ptr = va_arg(*args, void *);
-		string = ft_itoa_base((unsigned long)ptr, 16, map, s[map->pos]);
-//		ft_putstr_fd("0x", 1, map, 1);
-		ft_putstr_fd(string, 1, map, 0);
 		free(string);
 		map->pos++;
 		return ;
@@ -143,11 +154,13 @@ void	ft_typefinder(const char *s, t_map *map, va_list *args)
 
 void	ft_writer(const char *s, t_map *map)
 {
-//	printf("%s\n", s);
-	if (s[map->pos - 1] == '%')
-		map->pos++;
 	while (s[map->pos])
 	{
+		if (s[map->pos] == '%' && s[map->pos + 1] == '%')
+			{
+				ft_putchar_fd(s[map->pos], 1, map, 0);
+				map->pos = map->pos + 2;
+			}
 		if (s[map->pos] == '%')
 		{
 			map->pos++;
@@ -155,7 +168,6 @@ void	ft_writer(const char *s, t_map *map)
 		}
 		ft_putchar_fd(s[map->pos], 1, map, 0);
 		map->pos++;
-//		printf("%d\n", pos);
 	}
 	return ;
 }
@@ -167,14 +179,12 @@ int		ft_printf(const char *s, ...)
 
 	map = ft_initmap();
 	va_start(args, s);
-//	printf("%p\n\n", &type);
-	while (s[map->pos] != 0)
+	while (s[map->pos])
 	{
-		map = ft_resetmap(map);
 		ft_writer(s, map);
-//		printf("%i", map->pos);
 		ft_flagfinder(s, map, &args);
 		ft_typefinder(s, map, &args);
+		map = ft_resetmap(map);
 	}
 	va_end(args);
 	return (map->size);

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 17:30:53 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 19:07:26 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 	i = 0;
 	if (check == 1)
 		ft_flagfiller(fd, map, s);
+//	printf("map->prec = %d\n", map->prec);
 	while (s[i] && (map->prec == -1 || check == 0))
 	{
+//		printf("hawha \n");
 		ft_putchar_fd(s[i], fd, map, 0);
 		i++;
 	}

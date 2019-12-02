@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 16:53:32 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 21:15:42 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct	s_map
 {
 	int				pos;
 	int				size;
-	char			type;
 	int				min;
 	int				spac;
 	int				zero;
@@ -35,7 +34,6 @@ typedef struct	s_map
 	int				ll;
 	int				h;
 	int				hh;
-	int				apo;
 	int				hash;
 	int				plus;
 	unsigned long	nb;
@@ -44,6 +42,7 @@ typedef struct	s_map
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
+char			*ft_strchr(const char *s, int c);
 
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strlen(const char *s);
@@ -57,6 +56,7 @@ void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 char			*ft_itoa_base(long long nb, long long base, t_map *map, char c);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
+void			ft_secondflagfinder(const char *s, t_map *map, va_list *args);
 void			ft_flagfiller(int fd, t_map *map, char *s);
 
 t_map			*ft_initmap(void);
