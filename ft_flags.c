@@ -6,13 +6,13 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/02 23:29:10 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/02 23:43:04 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_bonusflagfinder(const char *s, t_map *map, va_list *args)
+void	ft_bonusflagfinder(const char *s, t_map *map)
 {
 	if (s[map->pos] == 'l' && s[map->pos + 1] == 'l')
 	{
@@ -100,7 +100,7 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 		}
 		ft_secondflagfinder(s, map, args);
 		ft_thirdflagfinder(s, map, args);
-		ft_bonusflagfinder(s, map, args);
+		ft_bonusflagfinder(s, map);
 	}
 	return ;
 }

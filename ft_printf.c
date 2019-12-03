@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/02 21:35:08 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/03 14:23:23 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int		ft_printf(const char *s, ...)
 	{
 		ft_writer(s, map);
 		ft_flagfinder(s, map, &args);
-		ft_typefinder(s, map, &args);
+		if (ft_thebigshort(s, map, &args) == 0);
+			ft_typefinder(s, map, &args);
 		map = ft_resetmap(map);
 	}
 	va_end(args);

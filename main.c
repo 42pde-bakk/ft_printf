@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
@@ -17,7 +18,8 @@ int	main(void)
 	int			i1 = 8902;
 	int			i2 = 97;
 	int			i3 = 0;
-	int			i4 = -2147483648;
+	int			i4 = INT_MIN;
+	int			i5 = INT_MAX;
 
 	unsigned	o1 = 11;
 	unsigned	o2 = 67;
@@ -166,26 +168,37 @@ int	main(void)
 	printf("%i\n", n1);
 
 	ft_printf("\033[1;31m");
-	ft_printf("This time, give it up for floats:\n\n");
-	ft_printf("%f\n", 10.9);
-	printf("%f\n", 10.9);
+	ft_printf("Starting with l and ll flags: LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX \n\n");
+	ft_printf("<- %i \n", ft_printf("%li, %li, %u, %uli$", LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX));
+	printf("<- %i \n", printf("%li, %li, %u, %uli$", LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX));
 
 	ft_printf("\033[0;32m");
-	ft_printf("Whatever a g-flag may be...:\n\n");
-
-	ft_printf("\033[1;32m");
-	ft_printf("E is for scientific notation right?\n\n");
-
-	ft_printf("\033[0;33m");
-	ft_printf("Starting with l and ll flags:\n\n");
-
-	ft_printf("\033[1;33m");
 	ft_printf("Now some h and hh flags:\n\n");
 
-	ft_printf("\033[0;34m");
+	ft_printf("\033[1;32m");
 	ft_printf("# and + are easy but w/e:\n\n");
 
-	ft_printf("\033[0;34m");
+	ft_printf("\033[0;33m");
 	ft_printf(" ' flags and \\  :\n\n");
+
+	ft_printf("\033[1;33m");
+
+	ft_printf("\033[1;31m");
+	ft_printf("R");
+	ft_printf("\033[1;32m");
+	ft_printf("A");
+	ft_printf("\033[1;33m");
+	ft_printf("I");
+	ft_printf("\033[1;34m");
+	ft_printf("N");
+	ft_printf("\033[1;35m");
+	ft_printf("B");
+	ft_printf("\033[1;36m");
+	ft_printf("O");
+	ft_printf("\033[1;37m");
+	ft_printf("W");
+	ft_printf("\033[1;38m");
+	ft_printf("!");
+
 	return 0;
 }
