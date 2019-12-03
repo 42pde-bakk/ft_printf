@@ -66,15 +66,17 @@ int	main(void)
 	ft_printf("\033[0m");
 
 	ft_printf("\033[0;33m");
-	ft_printf("Integers: -Flag, 0Flag, .Flag, *Flag:\n");
-	ft_printf("<- %i \n", ft_printf("%-3i$ %7i$ %.8i$ %5.*i", i1, i2, i3, 8, i4));
-	printf("<- %i \n\n", printf("%-3i$ %7i$ %.8i$ %5.*i", i1, i2, i3, 8, i4));
+	ft_printf("Integers: .6(-3) +.7(-446) 07(-54) +5(432)\n");
+	ft_printf("<- %i \n", ft_printf("%.6i, |%+.7i, |%07i, |%+5i", -3, -446, -54, 432));
+	printf("<- %i \n\n", printf("%.6i, |%.7i, |%07i, |%+5i", -3, -446, -54, 432));
 	ft_printf("\033[0m");
 
 	ft_printf("\033[1;33m");
-	ft_printf("Integers: -0Flag, +2Flag, -8.7Flag, #Flag:\n");
-	ft_printf("<- %i \n", ft_printf("%-0i$ %+2i$ %-8.7i$ %#i$", i1, i3, i3, i4));
-	printf("<- %i \n\n", printf("%-0i$ %+2i$ %-8.7i$ %#i$", i1, i3, i3, i4));
+	printf("Integers: +08.6, +8.6, +07,       +7,     + 7,     +.7,      +0.7:\n");
+	ft_printf("<- %i \n", ft_printf("%+08.6d , |%+8.6d, |%+07d, |%+7d, |%+ 7d, |%+.7d, |%+0.7d", 32, 32, 32, 32, 32, 32, 32));
+	printf("<- %i \n\n", printf("%+08.6d , |%+8.6d, |%+07d, |%+7d, |%+ 7d, |%+.7d, |%+0.7d", 32, 32, 32, 32, 32, 32, 32));
+	ft_printf("<- %i \n", ft_printf("%+08.6d , |%+8.6d, |%+07d, |%+7d, |%+ 7d, |%+.7d, |%+0.7d", -32, -32, -32, -32, -32, -32, -32));
+	printf("<- %i \n\n", printf("%+08.6d , |%+8.6d, |%+07d, |%+7d, |%+ 7d, |%+.7d, |%+0.7d", -32, -32, -32, -32, -32, -32, -32));
 	ft_printf("\033[0m");
 
 	ft_printf("\033[0;34m");
@@ -146,7 +148,7 @@ int	main(void)
 	printf("<- %i \n\n\n", printf("%6.8s, %8.6s, %.5s, %.23s$", s1, s2, s3, s4));
 	ft_printf("\033[0m");
 
-	ft_printf("\033[;35m");
+	ft_printf("\033[0;35m");
 	ft_printf("Advanced Flags Management:\n");
 	ft_printf("<- %i \n", ft_printf("%*s, %*s, %*s, %*s$", -1, s1, 0, s2, 9, s3, 7, s4));
 	printf("<- %i \n\n", printf("%*s, %*s, %*s, %*s$", -1, s1, 0, s2, 9, s3, 7, s4));
@@ -165,40 +167,48 @@ int	main(void)
 	ft_printf("%s - 123456789%n\n", "voorbeeldstring1", &n2);
 	ft_printf("%i\n", n2);
 	printf("%s - 123456789%n\n", "voorbeeldstring2", &n1);
-	printf("%i\n", n1);
+	printf("%i\n\n", n1);
 
 	ft_printf("\033[1;31m");
 	ft_printf("Starting with l and ll flags: LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX \n\n");
 	ft_printf("<- %i \n", ft_printf("%li, %li, %u, %uli$", LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX));
-	printf("<- %i \n", printf("%li, %li, %u, %uli$", LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX));
+	printf("<- %i \n\n", printf("%li, %li, %u, %uli$", LONG_MIN, LONG_MAX, UINT_MAX, ULONG_MAX));
 
 	ft_printf("\033[0;32m");
 	ft_printf("Now some h and hh flags:\n\n");
+	ft_printf("<- %i \n", ft_printf("%hi, %hhi, %h7i, %hh8.6i$", i1, i2, i3, i4));
+	printf("<- %i \n\n", printf("%hi, %hhi, %h7i, %hh8.6i$", i1, i2, i3, i4));
 
 	ft_printf("\033[1;32m");
-	ft_printf("# and + are easy but w/e:\n\n");
+	ft_printf("2 with #flag and 2 with +flag:\n\n");
+	ft_printf("<- %i \n", ft_printf("%#x, %#-7o, %+10.8i, %+u", x1, o1, i1, x3));
+	printf("<- %i \n\n", printf("%#x, %#-7o, %+10.8i, %+u", x1, o1, i1, x3));
+
 
 	ft_printf("\033[0;33m");
 	ft_printf(" ' flags and \\  :\n\n");
 
 	ft_printf("\033[1;33m");
+	ft_printf("Edge case checks: negative precision, negative width w/e \n");
+	ft_printf("<- %i \n", ft_printf("%*i, %.*i, %*.*i$", -5, i1, -6, i2, -3, -5, i3));
+	printf("<- %i \n", printf("%*i, %.*i, %*.*i$", -5, i1, -6, i2, -3, -5, i3));
 
 	ft_printf("\033[1;31m");
-	ft_printf("R");
+	ft_printf("R ");
 	ft_printf("\033[1;32m");
-	ft_printf("A");
+	ft_printf("A ");
 	ft_printf("\033[1;33m");
-	ft_printf("I");
+	ft_printf("I ");
 	ft_printf("\033[1;34m");
-	ft_printf("N");
+	ft_printf("N ");
 	ft_printf("\033[1;35m");
-	ft_printf("B");
+	ft_printf("B ");
 	ft_printf("\033[1;36m");
-	ft_printf("O");
-	ft_printf("\033[1;37m");
-	ft_printf("W");
-	ft_printf("\033[1;38m");
-	ft_printf("!");
+	ft_printf("O ");
+	ft_printf("\033[1;31m");
+	ft_printf("W ");
+	ft_printf("\033[1;32m");
+	ft_printf("!\n");
 
 	return 0;
 }

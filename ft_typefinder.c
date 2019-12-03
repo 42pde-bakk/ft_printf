@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/02 21:32:40 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/03 14:27:59 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/02 21:32:40 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/03 17:24:53 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	ft_typefinder(const char *s, t_map *map, va_list *args)
 	char				*string;
 	char				c;
 
+	map->typ = s[map->pos];
 	if (s[map->pos] == 's')
 	{
 		string = va_arg(*args, char *);

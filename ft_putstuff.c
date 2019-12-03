@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putchar_fd.c                                    :+:    :+:            */
+/*   ft_putstuff.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 23:13:24 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/04 17:26:41 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/03 20:28:07 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,34 +72,110 @@ void	ft_putstr_fd(char *s, int fd, t_map *map, int check)
 		ft_putchar_fd(' ', 1, map, 0);
 		map->pad--;
 	}
-//	free(s);
 }
+
+void	ft_nbrprinter_fd(char *s, int fd, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (s[i] == '-')
+		i++;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd, map, 0);
+		i++;
+	}
+}
+
+void	ft_putsign_fd(int fd, t_map *map)
+{
+	if (map->nb < 0)
+		ft_putchar_fd('-', fd, map, 0);
+	if (map->nb >= 0 && map->plus == 1)
+	{
+		ft_putchar_fd('+', fd, map, 0);
+		map->plus = 0;
+	}
+}
+void	ft_nbrflagger_fd(char *s, int fd, t_map *map, int step)
+{
+	if (step == 1)
+	{
+		if (map->prec > ft_strlen(s))
+			map->pfill = map->prec - ft_strlen(s);
+		if (map->width > ft_strlen(s) && map->width > map->prec)
+			map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
+			: map->width - ft_strlen(s);
+		if (map->plus == 1)
+			map->pad--;
+	}
+	if (step == 2 && (map->width == 0 || map->prec == -1))
+	{
+		if (map->zero == 1)
+			ft_putsign_fd(fd, map);
+		while (map->prec == -1 && map->pad > 0 && map->min == 0)
+		{
+			if (map->zero == 1)
+				ft_putchar_fd('0', fd, map, 0);
+			else
+				ft_putchar_fd(' ', fd, map, 0);
+			map->pad--;
+		}
+		if (map->zero == 0)
+			ft_putsign_fd(fd, map);
+		while (map->width == 0 && map->pfill > 0)
+		{
+			ft_putchar_fd('0', fd, map, 0);
+			map->pfill--;
+		}
+	}
+}
+
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 {
-	if (map->prec > ft_strlen(s))
-		map->pfill = map->prec - ft_strlen(s);
-	if (map->width > ft_strlen(s) && map->width > map->prec)
-		map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
-		: map->width - ft_strlen(s);
-	while (map->pad > 0 && map->min == 0)
+	ft_nbrflagger_fd(s, fd, map, 1);
+	ft_nbrflagger_fd(s, fd, map, 2);
+
+	if (map->prec > -1 && map->width > map->prec)
 	{
-		if (map->zero == 1)
-			ft_putchar_fd('0', fd, map, 0);
-		else
+		while (map->pad > 0 && map->min == 0)
+		{
 			ft_putchar_fd(' ', fd, map, 0);
-		map->pad--;
+			map->pad--;
+		}
+		ft_putsign_fd(fd, map);
+		while (map->pfill > 0)
+		{
+			ft_putchar_fd('0', fd, map, 0);
+			map->pfill--;
+		}
 	}
-	while (map->pfill > 0)
-	{
-		ft_putchar_fd('0', fd, map, 0);
-		map->pfill--;
-	}
-	ft_putstr_fd(s, fd, map, 0);
+	ft_nbrprinter_fd(s, fd, map);
 	while (map->min == 1 && map->pad > 0)
 	{
 		ft_putchar_fd(' ', fd, map, 0);
 		map->pad--;
 	}
-//	free(s);
 }
+
+/*
+	while (map->pad > 0 && map->min == 0)
+	{
+		if (map->zero == 1 && map->prec == -1)
+			ft_putchar_fd('0', fd, map, 0);
+		else
+			ft_putchar_fd(' ', fd, map, 0);
+		map->pad--;
+	}
+	if (map->nb >= 0 && map->plus == 1 && map->prec > -1)
+		ft_putchar_fd('+', fd, map, 0);
+	if (map->zero == 0 && map->nb < 0)
+		ft_putchar_fd('-', fd, map, 0);
+	while (map->pfill > 0)
+	{
+		ft_putchar_fd('0', fd, map, 0);
+		map->pfill--;
+	}
+*/

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/03 14:23:23 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/03 17:24:26 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_map	*ft_initmap(void)
 	map = malloc(sizeof(t_map));
 	map->pos = 0;
 	map->size = 0;
+	map->typ = 'a';
 	map->min = 0;
 	map->spac = 0;
 	map->zero = 0;
@@ -38,6 +39,7 @@ t_map	*ft_initmap(void)
 
 t_map	*ft_resetmap(t_map *map)
 {
+	map->typ = 'a';
 	map->min = 0;
 	map->spac = 0;
 	map->zero = 0;
@@ -86,7 +88,7 @@ int		ft_printf(const char *s, ...)
 	{
 		ft_writer(s, map);
 		ft_flagfinder(s, map, &args);
-		if (ft_thebigshort(s, map, &args) == 0);
+		if (ft_thebigshort(s, map, &args) == 0)
 			ft_typefinder(s, map, &args);
 		map = ft_resetmap(map);
 	}

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/03 14:31:36 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/03 18:42:52 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_map
 {
 	int				pos;
 	int				size;
+	char			typ;
 	int				min;
 	int				spac;
 	int				zero;
@@ -35,7 +36,7 @@ typedef struct	s_map
 	int				hh;
 	int				hash;
 	int				plus;
-	unsigned long	nb;
+	long long		nb;
 }				t_map;
 
 void			*ft_memset(void *b, int c, size_t len);
@@ -52,6 +53,7 @@ void			ft_putstr_fd(char *s, int fd, t_map *map, int check);
 void			ft_putendl_fd(char *s, int fd, t_map *map);
 void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 
+int				ft_absolutely(long long nb);
 char			*ft_itoa_base(long long nb, long long base, t_map *map, char c);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
@@ -66,6 +68,7 @@ int				ft_typefinder2(const char *s, t_map *map, va_list *args);
 int				ft_typefinder3(const char *s, t_map *map, va_list *args);
 int				ft_typefinder4(const char *s, t_map *map, va_list *args);
 
+int				ft_thebigshort(const char *s, t_map *map, va_list *args);
 int				ft_longfinder(const char *s, t_map *map, va_list *args);
 int				ft_shortfinder(const char *s, t_map *map, va_list *args);
 int				ft_longlongfinder(const char *s, t_map *map, va_list *args);

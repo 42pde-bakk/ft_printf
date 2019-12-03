@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/28 18:29:13 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/02 21:22:08 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/03 18:41:20 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int		ft_amount(long long nb, long long base, t_map *map, char c)
 	map->nb = nb;
 	if (nb == 0)
 		amount++;
-	if (map->plus == 1 && nb >= 0 && base == 10)
-		amount++;
 	if (nb < 0 && base == 10)
 	{
+		map->plus = 0;
 		amount++;
 		nb = -nb;
 	}
@@ -57,8 +56,8 @@ char	*ft_hashcheck(char *str, long long base, t_map *map, char c)
 				str[1] = c;
 		}
 	}
-	if (map->plus == 1 && map->nb >= 0 && base == 10)
-		str[0] = '+';
+//	if (map->plus == 1 && map->nb >= 0 && base == 10)
+//		str[0] = '+';
 	return (str);
 }
 
