@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/03 17:24:26 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 13:46:25 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ t_map	*ft_initmap(void)
 	map->pad = 0;
 	map->prec = -1;
 	map->pfill = 0;
-	map->l = 0;
-	map->ll = 0;
-	map->h = 0;
-	map->hh = 0;
+	map->bon = 0;
 	map->hash = 0;
 	map->plus = 0;
 	map->nb = 0;
@@ -47,10 +44,7 @@ t_map	*ft_resetmap(t_map *map)
 	map->pad = 0;
 	map->prec = -1;
 	map->pfill = 0;
-	map->l = 0;
-	map->ll = 0;
-	map->h = 0;
-	map->hh = 0;
+	map->bon = 0;
 	map->hash = 0;
 	map->plus = 0;
 	map->nb = 0;

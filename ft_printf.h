@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/03 18:42:52 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 13:46:00 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ typedef struct	s_map
 	int				pad;
 	int				prec;
 	int				pfill;
-	int				l;
-	int				ll;
-	int				h;
-	int				hh;
+	int				bon;
 	int				hash;
 	int				plus;
 	long long		nb;

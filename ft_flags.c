@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/03 17:21:14 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 13:52:22 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	ft_bonusflagfinder(const char *s, t_map *map)
 {
-	if (s[map->pos] == 'l' && s[map->pos + 1] == 'l')
-	{
-		map->ll = 1;
-		map->pos = map->pos + 2;
-	}
 	if (s[map->pos] == 'l')
 	{
-		map->l = 1;
+		map->bon = 1;
 		map->pos++;
-	}
-	if (s[map->pos] == 'h' && s[map->pos + 1] == 'h')
-	{
-		map->hh = 1;
-		map->pos = map->pos + 2;
+		if (s[map->pos] == 'l')
+		{
+			map->bon = 2;
+			map->pos++;
+		}
 	}
 	if (s[map->pos] == 'h')
 	{
-		map->h = 1;
+		map->bon = 3;
 		map->pos++;
+		if (s[map->pos] == 'h')
+		{
+			map->bon = 4;
+			map->pos++;
+		}
 	}
 	if (ft_strchr("jztL", s[map->pos]))
 		map->pos++;

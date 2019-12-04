@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 11:29:40 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 15:07:14 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ void	ft_nbrprinter_fd(char *s, int fd, t_map *map)
 	i = 0;
 	if (s[i] == '-')
 		i++;
+	if (map->nb == 0 && map->prec == 0)
+	{
+		if (map->plus == 1)
+			ft_putchar_fd('+', fd, map, 0);
+		else if (map->width == 0)
+			return ;
+		return ;
+	}
 	while (s[i])
 	{
 		ft_putchar_fd(s[i], fd, map, 0);
@@ -88,19 +96,13 @@ void	ft_nbrprinter_fd(char *s, int fd, t_map *map)
 	}
 }
 
-void	ft_nbrhelper_fd(char *s, int fd, t_map *map, int step)
+void	ft_putsign_fd(int fd, t_map *map)
 {
-	if (step == 1)
+	if (map->nb == 0 && map->plus == 1 && map->prec == 0)
 	{
-		if (map->prec > ft_strlen(s))
-			map->pfill = map->prec - ft_strlen(s);
-		if (map->width > ft_strlen(s) && map->width > map->prec)
-			map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
-			: map->width - ft_strlen(s);
-		if ((map->plus == 1 && map->nb >= 0) || map->nb < 0)
-			map->pad--;
+		return ;
 	}
-	if (step == 2)
+	if (map->typ == 'd' || map->typ == 'i')
 	{
 		if (map->nb < 0)
 		{
@@ -116,46 +118,41 @@ void	ft_nbrhelper_fd(char *s, int fd, t_map *map, int step)
 
 void	ft_nbrflagger_fd(char *s, int fd, t_map *map)
 {
-	if (map->width <= 0 || map->prec <= -1)
+	map->pfill = map->prec - ft_strlen(s);
+	if (map->width > ft_strlen(s) && map->width > map->prec)
+		map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
+		: map->width - ft_strlen(s);
+	if ((map->plus == 1 && map->nb >= 0) || map->nb < 0)
+		map->pad--;
+	if (map->zero == 1 && map->pad > 0 && map->prec > -1)
+		map->zero = 0;
+	if (map->spac == 1 && map->plus == 0 && map->hash == 0 && map->nb >= 0)
 	{
-		if (map->zero == 1 && (map->typ == 'i' || map->typ == 'd'))
-			ft_nbrhelper_fd(s, fd, map, 2);
-		while (map->prec == -1 && map->pad > 0 && map->min == 0)
-		{
-			if (map->zero == 1)
-				ft_putchar_fd('0', fd, map, 0);
-			else
-				ft_putchar_fd(' ', fd, map, 0);
-			map->pad--;
-		}
-		if (map->zero == 0 && (map->typ == 'i' || map->typ == 'd'))
-			ft_nbrhelper_fd(s, fd, map, 2);
-		while (map->width == 0 && map->pfill > 0)
-		{
-			ft_putchar_fd('0', fd, map, 0);
-			map->pfill--;
-		}
+		ft_putchar_fd(' ', fd, map, 0);
+		map->pad--;
 	}
+	if (map->nb == 0 && map->prec == 0 && map->width > 1)
+		map->pad++;
 }
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 {
-	ft_nbrhelper_fd(s, fd, map, 1);
 	ft_nbrflagger_fd(s, fd, map);
-	if (map->prec > -1 && map->width > map->prec)
+	while (map->pad > 0 && map->min == 0 && map->zero == 0)
 	{
-		while (map->pad > 0 && map->min == 0)
-		{
-			ft_putchar_fd(' ', fd, map, 0);
-			map->pad--;
-		}
-		if (map->typ == 'i' || map->typ == 'd')
-			ft_nbrhelper_fd(s, fd, map, 2);
-		while (map->pfill > 0)
-		{
-			ft_putchar_fd('0', fd, map, 0);
-			map->pfill--;
-		}
+		ft_putchar_fd(' ', fd, map, 0);
+		map->pad--;
+	}
+	ft_putsign_fd(fd, map);
+	while (map->zero == 1 && map->pad > 0)
+	{
+		ft_putchar_fd('0', fd, map, 0);
+		map->pad--;
+	}
+	while (map->pfill > 0)
+	{
+		ft_putchar_fd('0', fd, map, 0);
+		map->pfill--;
 	}
 	ft_nbrprinter_fd(s, fd, map);
 	while (map->min == 1 && map->pad > 0)

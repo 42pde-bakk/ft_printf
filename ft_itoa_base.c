@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 10:53:38 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 14:00:09 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		ft_amount(long long nb, long long base, t_map *map, char c)
 
 	amount = 0;
 	map->nb = nb;
+//	printf("saved nb = %d, ", map->nb);
 	if (nb == 0)
 		amount++;
 	if (nb < 0 && base == 10)

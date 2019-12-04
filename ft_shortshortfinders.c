@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:46:34 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/03 16:57:01 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 14:01:43 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_shortshortfinder(const char *s, t_map *map, va_list *args)
 	unsigned char	u;
 	char			*string;
 
+	map->typ = s[map->pos];
 	if (s[map->pos] == 'd' || s[map->pos] == 'i')
 	{
 		i = va_arg(*args, int);

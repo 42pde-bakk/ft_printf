@@ -1,3 +1,4 @@
+
 #include "ft_printf.h"
 #include <limits.h>
 
@@ -190,6 +191,32 @@ int	main(void)
 	ft_printf("Edge case checks: negative precision, negative width w/e \n");
 	ft_printf("<- %i \n", ft_printf("%*i, %.*i, %*.*i$", -5, i1, -6, i2, -3, -5, i3));
 	printf("<- %i \n", printf("%*i, %.*i, %*.*i$", -5, i1, -6, i2, -3, -5, i3));
+
+	ft_printf("\033[0;34m");
+	ft_printf("Ints: 3.7i, 3.7i, 3.3i, -3.7i \n");
+	ft_printf("<- %i \n", ft_printf("%3.7i, %3.7i, %3.3i, %-03.7i", 3267, -2375, -8462, 3267));
+	printf("<- %i \n\n", printf("%3.7i, %3.7i, %3.3i, %-03.7i", 3267, -2375, -8462, 3267));
+
+	ft_printf("\033[1;34m");
+	ft_printf("Ints: 08.5i, 010.5i, 08.5i, 08.3i \n");
+	ft_printf("<- %i \n", ft_printf("%08.5i, %010.5i, %08.5i, %08.3i", 34, -216, 0, 8375));
+	printf("<- %i \n\n", printf("%08.5i, %010.5i, %08.5i, %08.3i", 34, -216, 0, 8375));
+
+	ft_printf("\033[0;35m");
+	ft_printf("Shorts and Longs: hhi, hi, li, lli, hhi\n");
+	ft_printf("<- %i \n", ft_printf("%hhi, %hi, %li, %lli, %hhi", (char)-45, (short)-385, (long)-32, (long long)-43, (char)-87));
+	printf("<- %i \n\n", printf("%hhi, %hi, %li, %lli, %hhi", (char)-45, (short)-385, (long)-32, (long long)-43, (char)-87));
+
+	ft_printf("\033[1;35m");
+	ft_printf("Ints: | i, |4 i, |+ i, |05 i \n");
+	ft_printf("<- %i \n", ft_printf("this % i number, % i, % d, % +i, % 5i", -267, -1, -267, -7, -2562));
+	printf("<- %i \n\n", printf("this % i number, % i, % d, % +i, % 5i", -267, -1, -267, -7, -2562));
+
+	ft_printf("\033[0;36m");
+	ft_printf("Int 0: +.0i, +.i, +-5.0i, +-5.i \n");
+	ft_printf("<- %i \n", ft_printf("%+.0i, %+.i, %+-5.0i, %+1.i", 0, 0, 0, 0));
+	printf("<- %i \n\n", printf("%+.0i, %+.i, %+-5.0i, %+1.i", 0, 0, 0, 0));
+
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");

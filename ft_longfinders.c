@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:36:31 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/03 14:49:50 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 14:01:53 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	unsigned long int	u;
 	char				*string;
 
+	map->typ = s[map->pos];
 	if (s[map->pos] == 'd' || s[map->pos] == 'i')
 	{
 		i = va_arg(*args, long int);
@@ -81,13 +82,13 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 
 int	ft_thebigshort(const char *s, t_map *map, va_list *args)
 {
-	if (map->l == 1)
+	if (map->bon == 1)
 		return (ft_longfinder(s, map, args));
-	else if (map->ll == 1)
+	else if (map->bon == 2)
 		return (ft_longlongfinder(s, map, args));
-	else if (map->h == 1)
+	else if (map->bon == 3)
 		return (ft_shortfinder(s, map, args));
-	else if (map->hh == 1)
+	else if (map->bon == 4)
 		return (ft_shortshortfinder(s, map, args));
 	else
 		return (0);

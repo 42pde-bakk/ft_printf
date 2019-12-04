@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:30 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/03 14:50:20 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 14:02:08 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_longlongfinder(const char *s, t_map *map, va_list *args)
 	unsigned long long int	u;
 	char					*string;
 
+	map->typ = s[map->pos];
 	if (s[map->pos] == 'd' || s[map->pos] == 'i')
 	{
 		i = va_arg(*args, long long int);
