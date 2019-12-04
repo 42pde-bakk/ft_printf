@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 17:13:24 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 19:33:03 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@ void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strchr(const char *s, int c);
 
-void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strlen(const char *s);
-char			*ft_strdup(const char *s1);
-
 void			ft_putchar_fd(char c, int fd, t_map *map, int check);
-int				ft_putstr_fd(char *s, int fd, t_map *map, int check);
-void			ft_putendl_fd(char *s, int fd, t_map *map);
+void			ft_putstr_fd(char *s, int fd, t_map *map, int check);
+void			ft_nbrprinter_fd(char *s, int fd, t_map *map);
+void			ft_putsign_fd(int fd, t_map *map);
+
+void			ft_put0x(int fd, t_map *map);
+void			ft_nbrflagger_fd(char *s, int fd, t_map *map);
+void			ft_lastputstuff(char *s, int fd, t_map *map);
 void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 
 int				ft_absolutely(long long nb);

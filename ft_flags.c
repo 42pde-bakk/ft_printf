@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 19:00:41 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 19:27:07 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_bonusflagfinder(const char *s, t_map *map)
 	}
 	while (ft_strchr("jztL", s[map->pos]))
 		map->pos++;
-
 }
 
 void	ft_thirdflagfinder(const char *s, t_map *map, va_list *args)
