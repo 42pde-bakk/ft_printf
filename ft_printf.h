@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 13:46:00 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 17:13:24 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				ft_strlen(const char *s);
 char			*ft_strdup(const char *s1);
 
 void			ft_putchar_fd(char c, int fd, t_map *map, int check);
-void			ft_putstr_fd(char *s, int fd, t_map *map, int check);
+int				ft_putstr_fd(char *s, int fd, t_map *map, int check);
 void			ft_putendl_fd(char *s, int fd, t_map *map);
 void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 

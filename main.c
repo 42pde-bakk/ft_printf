@@ -185,7 +185,10 @@ int	main(void)
 
 
 	ft_printf("\033[0;33m");
-	ft_printf(" ' flags and \\  :\n\n");
+	ft_printf(" ' flags and \\  :\n");
+	printf(" \%% \n");
+	ft_printf(" \%% \n");
+	ft_printf("hello \n world\n\n");
 
 	ft_printf("\033[1;33m");
 	ft_printf("Edge case checks: negative precision, negative width w/e \n");
@@ -222,6 +225,16 @@ int	main(void)
 	ft_printf("<- %i \n", ft_printf("%#.5o, %#8.5o, %#2.7o, %-#8.5o, %#-2.7o", 21, 34, 3267, 34, 3267));
 	printf("<- %i \n\n", printf("%#.5o, %#8.5o, %#2.7o, %-#8.5o, %#-2.7o", 21, 34, 3267, 34, 3267));
 
+	ft_printf("\033[0;31m");
+	ft_printf("Hexa: #.0x, #.x, #5.0x, #5.x, #-5.0x, #-5.x \n");
+	ft_printf("<- %i \n", ft_printf("%#.0x, %#.x, %#5.0x, %-5.0x, %#-5.x", 0, 0, 0, 0, 0));
+	printf("<- %i \n\n", printf("%#.0x, %#.x, %#5.0x, %-5.0x, %#-5.x", 0, 0, 0, 0, 0));
+
+	ft_printf("\033[0;31m");
+	ft_printf("Null pointers :\n");
+	ft_printf("<- %i \n", ft_printf("%p, %9.2p, %2.9p, %.5p", NULL, 1234, 1234, 0));
+	printf("<- %i \n\n", printf("%p, %9.2p, %2.9p, %.5p", NULL, 1234, 1234, 0));
+
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");
@@ -239,6 +252,7 @@ int	main(void)
 	ft_printf("W ");
 	ft_printf("\033[1;32m");
 	ft_printf("!\n");
+	while (1) {}
 
 	return 0;
 }

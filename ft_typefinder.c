@@ -6,11 +6,24 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 21:32:40 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/03 17:24:53 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 19:03:31 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_typefinder5(const char *s, t_map *map)
+{
+	if (s[map->pos] == '%')
+	{
+		ft_putchar_fd('%', 1, map, 1);
+		map->pos++;
+		return (1);
+	}
+	while (ft_strchr("cspdiuxX%nfge", s[map->pos]) == 0)
+		map->pos++;
+	return (0);
+}
 
 int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 {
@@ -22,7 +35,7 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 	{
 		ptr = va_arg(*args, void *);
 		string = ft_itoa_base((unsigned long)ptr, 16, map, s[map->pos]);
-		ft_putstr_fd(string, 1, map, 0);
+		ft_nbrputter_fd(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -34,7 +47,7 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 		map->pos++;
 		return (1);
 	}
-	return (0);
+	return (ft_typefinder5(s, map));
 }
 
 int	ft_typefinder3(const char *s, t_map *map, va_list *args)
@@ -99,7 +112,10 @@ int	ft_typefinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 's')
 	{
 		string = va_arg(*args, char *);
-		ft_putstr_fd(string, 1, map, 1);
+		if (string == NULL)
+			ft_putstr_fd("(null)", 1, map, 1);
+		else
+			ft_putstr_fd(string, 1, map, 1);
 		map->pos++;
 		return (1);
 	}

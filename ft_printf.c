@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 13:46:25 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 19:18:37 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,6 @@ void	ft_writer(const char *s, t_map *map)
 {
 	while (s[map->pos])
 	{
-		if (s[map->pos] == '%' && s[map->pos + 1] == '%')
-		{
-			ft_putchar_fd(s[map->pos], 1, map, 0);
-			map->pos = map->pos + 2;
-		}
 		if (s[map->pos] == '%')
 		{
 			map->pos++;
@@ -87,5 +82,6 @@ int		ft_printf(const char *s, ...)
 		map = ft_resetmap(map);
 	}
 	va_end(args);
+	free(map);
 	return (map->size);
 }
