@@ -217,6 +217,11 @@ int	main(void)
 	ft_printf("<- %i \n", ft_printf("%+.0i, %+.i, %+-5.0i, %+1.i", 0, 0, 0, 0));
 	printf("<- %i \n\n", printf("%+.0i, %+.i, %+-5.0i, %+1.i", 0, 0, 0, 0));
 
+	ft_printf("\033[1;36m");
+	ft_printf("Octal: #.5o, #8.5o, #2.7o, #-8.5o, $-2.7o\n");
+	ft_printf("<- %i \n", ft_printf("%#.5o, %#8.5o, %#2.7o, %-#8.5o, %#-2.7o", 21, 34, 3267, 34, 3267));
+	printf("<- %i \n\n", printf("%#.5o, %#8.5o, %#2.7o, %-#8.5o, %#-2.7o", 21, 34, 3267, 34, 3267));
+
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");

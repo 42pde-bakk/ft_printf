@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 15:07:14 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 16:48:56 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,33 @@ void	ft_putsign_fd(int fd, t_map *map)
 	}
 }
 
+void	ft_put0x(int fd, t_map *map)
+{
+	if (map->typ == 'p' || (map->hash == 1 && map->nb != 0 &&
+	(map->typ == 'x' || map->typ == 'X' || map->typ == 'o')))
+	{
+		ft_putchar_fd('B', fd, map, 0);
+		if (map->typ == 'o')
+			map->pfill--;
+		if (map->min == 1)
+		{
+			map->pad--;
+		}
+		if (map->typ == 'x' || map->typ == 'p')
+		{
+			ft_putchar_fd('x', fd, map, 0);
+			if (map->min == 1)
+				map->pad--;
+		}
+		else if (map->typ == 'X')
+		{
+			ft_putchar_fd('X', fd, map, 0);
+			if (map->min == 1)
+				map->pad--;
+		}
+	}
+}
+
 void	ft_nbrflagger_fd(char *s, int fd, t_map *map)
 {
 	map->pfill = map->prec - ft_strlen(s);
@@ -133,6 +160,13 @@ void	ft_nbrflagger_fd(char *s, int fd, t_map *map)
 	}
 	if (map->nb == 0 && map->prec == 0 && map->width > 1)
 		map->pad++;
+	if (map->hash == 1 && map->nb != 0 && map->min == 0)
+	{
+		if (map->typ == 'o')
+			map->pad--;
+		if (map->typ == 'p' || map->typ == 'x' || map->typ == 'X')
+			map->pad = map->pad - 2;
+	}
 }
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
@@ -144,6 +178,7 @@ void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 		map->pad--;
 	}
 	ft_putsign_fd(fd, map);
+	ft_put0x(fd, map);
 	while (map->zero == 1 && map->pad > 0)
 	{
 		ft_putchar_fd('0', fd, map, 0);
@@ -151,7 +186,7 @@ void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 	}
 	while (map->pfill > 0)
 	{
-		ft_putchar_fd('0', fd, map, 0);
+		ft_putchar_fd('Z', fd, map, 0);
 		map->pfill--;
 	}
 	ft_nbrprinter_fd(s, fd, map);

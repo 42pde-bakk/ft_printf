@@ -6,25 +6,23 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 14:00:09 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 15:52:23 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_amount(long long nb, long long base, t_map *map, char c)
+int		ft_amount(long long nb, long long base, t_map *map)
 {
 	long long	amount;
 
 	amount = 0;
 	map->nb = nb;
-//	printf("saved nb = %d, ", map->nb);
 	if (nb == 0)
 		amount++;
 	if (nb < 0 && base == 10)
 	{
 		map->plus = 0;
-//		amount++;
 		nb = -nb;
 	}
 	while (nb)
@@ -32,8 +30,6 @@ int		ft_amount(long long nb, long long base, t_map *map, char c)
 		nb = nb / base;
 		amount++;
 	}
-	if ((map->hash == 1 && (base == 8 || base == 16)) || c == 'p')
-		amount = amount + (base / 8);
 	return (amount);
 }
 
@@ -44,31 +40,13 @@ int		ft_absolutely(long long nb)
 	return (nb);
 }
 
-char	*ft_hashcheck(char *str, long long base, t_map *map, char c)
-{
-	if ((c == 'p') || (map->hash == 1 && (base == 8 || base == 16)))
-	{
-		str[0] = '0';
-		if (base == 16)
-		{
-			if (c == 'p')
-				str[1] = 'x';
-			else
-				str[1] = c;
-		}
-	}
-//	if (map->plus == 1 && map->nb >= 0 && base == 10)
-//		str[0] = '+';
-	return (str);
-}
-
 char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 {
 	char		*str;
 	char		*tab;
 	long long	amount;
 
-	amount = ft_amount(nb, base, map, c);
+	amount = ft_amount(nb, base, map);
 	if (c == 'X')
 		tab = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	else
@@ -84,6 +62,5 @@ char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 		amount--;
 		nb = nb / base;
 	}
-	str = ft_hashcheck(str, base, map, c);
 	return (str);
 }
