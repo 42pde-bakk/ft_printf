@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/03 18:41:20 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/04 10:53:38 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_amount(long long nb, long long base, t_map *map, char c)
 	if (nb < 0 && base == 10)
 	{
 		map->plus = 0;
-		amount++;
+//		amount++;
 		nb = -nb;
 	}
 	while (nb)
@@ -66,21 +66,18 @@ char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 	char		*str;
 	char		*tab;
 	long long	amount;
-	long long	sign;
 
-	sign = 0;
 	amount = ft_amount(nb, base, map, c);
 	if (c == 'X')
 		tab = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	else
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
+	if (base < 2 || base > 36)
+		return (0);
 	str = (char*)ft_calloc(amount + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
-	if (nb < 0 && base == 10)
-		sign = 1;
-	str[0] = '-';
-	while (amount > sign)
+	while (amount > 0)
 	{
 		str[amount - 1] = tab[ft_absolutely(nb % base)];
 		amount--;
