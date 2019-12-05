@@ -42,6 +42,14 @@ int	main(void)
 	int			H = 7;
 	char		*str;
 
+	float		f1 = 392.65;
+	float		f2 = 413.6587;
+	float		f3 = 81201727.2;
+
+	double		d1 = 392.65;
+	double		d2 = 413.6587;
+	double		d3 = 81201727.2;
+
 	ft_printf("\033[0;31m");
 	ft_printf("Strings: -Flag, 0Flag, .Flag, *Flag:\n");
 	ft_printf("<- %i \n", ft_printf("%-8s$ %7s$ %.8s$ %.*s$", s1, s2, s3, H, s4));
@@ -188,7 +196,7 @@ int	main(void)
 	ft_printf(" ' flags and \\  :\n");
 	printf(" \%% \n");
 	ft_printf(" \%% \n");
-	ft_printf("hello \n world\n\n");
+	ft_printf("hello \n world\n\n"); 
 
 	ft_printf("\033[1;33m");
 	ft_printf("Edge case checks: negative precision, negative width w/e \n");
@@ -235,6 +243,11 @@ int	main(void)
 	ft_printf("<- %i \n", ft_printf("%p, %9.2p, %2.9p, %.5p", NULL, 1234, 1234, 0));
 	printf("<- %i \n\n", printf("%p, %9.2p, %2.9p, %.5p", NULL, 1234, 1234, 0));
 
+	ft_printf("\033[1;31m");
+	ft_printf("Floats :\n");
+	ft_printf("<- %i \n", ft_printf("%f, %7f, %f", f1, f1, f1));
+	printf("<- %i \n", printf("%f, %7f, %f", f1, f1, f1));
+//	printf("<- %i \n\n", printf("%f, %7f, %f", d1, d1, d1));
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");
@@ -252,7 +265,7 @@ int	main(void)
 	ft_printf("W ");
 	ft_printf("\033[1;32m");
 	ft_printf("!\n");
-	while (1) {}
+//	while (1) {}
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 19:33:03 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/05 17:39:28 by peerdb        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int				ft_shortfinder(const char *s, t_map *map, va_list *args);
 int				ft_longlongfinder(const char *s, t_map *map, va_list *args);
 int				ft_shortshortfinder(const char *s, t_map *map, va_list *args);
 
+int				ft_floatfinder(const char *s, t_map *map, va_list *args);
 void			ft_writer(const char *s, t_map *map);
 int				ft_printf(const char *s, ...);
 

@@ -6,13 +6,13 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 21:32:40 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 19:03:31 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/05 17:38:50 by peerdb        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_typefinder5(const char *s, t_map *map)
+int	ft_typefinder5(const char *s, t_map *map, va_list *args)
 {
 	if (s[map->pos] == '%')
 	{
@@ -20,6 +20,8 @@ int	ft_typefinder5(const char *s, t_map *map)
 		map->pos++;
 		return (1);
 	}
+	if (ft_floatfinder(s, map, args) == 1)
+		return (1);
 	while (ft_strchr("cspdiuxX%nfge", s[map->pos]) == 0)
 		map->pos++;
 	return (0);
@@ -47,7 +49,7 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 		map->pos++;
 		return (1);
 	}
-	return (ft_typefinder5(s, map));
+	return (ft_typefinder5(s, map, args));
 }
 
 int	ft_typefinder3(const char *s, t_map *map, va_list *args)
