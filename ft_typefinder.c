@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 21:32:40 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/05 17:38:50 by peerdb        ########   odam.nl         */
+/*   Updated: 2019/12/06 19:00:59 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_typefinder5(const char *s, t_map *map, va_list *args)
 	}
 	if (ft_floatfinder(s, map, args) == 1)
 		return (1);
-	while (ft_strchr("cspdiuxX%nfge", s[map->pos]) == 0)
+	while (ft_strchr("cspdiuxX%nfFgGeEaA", s[map->pos]) == 0)
 		map->pos++;
 	return (0);
 }

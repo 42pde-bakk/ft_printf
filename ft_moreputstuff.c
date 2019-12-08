@@ -6,18 +6,47 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/04 19:24:51 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/04 19:25:27 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/08 14:50:23 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+char	*ft_apostrophe(char *s, t_map *map)
+{
+	char	*ret;
+	int		i;
+	int		n;
+
+	i = 0;
+	n = 0;
+	if (map->apos <= -1 || map->typ == 'x' || map->typ == 'X' ||
+	map->typ == 'A' || map->typ == 'A')
+		map->apos = -1;
+	ret = ft_calloc(ft_strlen(s) + map->apos + 1, sizeof(char));
+	if (!ret)
+		return (0);
+	while (s[n])
+	{
+		ret[i] = s[n];
+		i++;
+		n++;
+		if ((ft_strlen(s) - n) % 3 == 0 && map->apos > 0)
+		{
+			ret[i] = ',';
+			i++;
+			map->apos--;
+		}
+	}
+	return (ret);
+}
+
 void	ft_put0x(int fd, t_map *map)
 {
 	if (map->nb == 0 && map->prec == 0 && map->hash == 1 && map->typ == 'o')
 		ft_putchar_fd('0', fd, map, 0);
-	if (map->typ == 'p' || (map->hash == 1 && map->nb != 0 &&
-	(map->typ == 'x' || map->typ == 'X' || map->typ == 'o')))
+	if (map->typ == 'p' || map->typ == 'a' || map->typ == 'A' || (map->hash == 1
+	&& map->nb != 0 && (map->typ == 'x' || map->typ == 'X' || map->typ == 'o')))
 	{
 		ft_putchar_fd('0', fd, map, 0);
 		if (map->min == 1)
@@ -27,9 +56,10 @@ void	ft_put0x(int fd, t_map *map)
 			else
 				map->pad--;
 		}
-		if (map->typ == 'x' || map->typ == 'p' || map->typ == 'X')
+		if (map->typ == 'x' || map->typ == 'p' || map->typ == 'X'
+	|| map->typ == 'A' || map->typ == 'a')
 		{
-			if (map->typ == 'X')
+			if (map->typ == 'X' || map->typ == 'A')
 				ft_putchar_fd('X', fd, map, 0);
 			else
 				ft_putchar_fd('x', fd, map, 0);
@@ -83,6 +113,7 @@ void	ft_lastputstuff(char *s, int fd, t_map *map)
 
 void	ft_nbrputter_fd(char *s, int fd, t_map *map)
 {
+	s = ft_apostrophe(s, map);
 	map->pfill = map->prec - ft_strlen(s);
 	if (map->width > ft_strlen(s) && map->width > map->prec)
 		map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec

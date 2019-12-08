@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:36:31 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/04 14:01:53 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/08 17:50:06 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,28 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	return (ft_longfinder2(s, map, args));
 }
 
+int ft_longdoublefinder(const char *s, t_map *map, va_list *args)
+{
+	long double		f;
+	long long		dec;
+	char			*string;
+	char			*decstring;
+
+	if (s[map->pos] == 'f' || s[map->pos] == 'F')
+	{
+		f = va_arg(*args, long double);
+		dec = ft_round(f, map, 10);
+		string = ft_itoa_base(ft_floatrect(f, map), 10, map, s[map->pos]);
+		decstring = ft_itoa_base(dec, 10, map, s[map->pos]);
+		string = ft_floatjoin(string, decstring, map);
+		ft_floatflagger(string, 1, map);
+		free(string);
+		map->pos++;
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_thebigshort(const char *s, t_map *map, va_list *args)
 {
 	if (map->bon == 1)
@@ -90,6 +112,8 @@ int	ft_thebigshort(const char *s, t_map *map, va_list *args)
 		return (ft_shortfinder(s, map, args));
 	else if (map->bon == 4)
 		return (ft_shortshortfinder(s, map, args));
+	else if (map->bon == 5)
+		return (ft_longdoublefinder(s, map, args));
 	else
 		return (0);
 }

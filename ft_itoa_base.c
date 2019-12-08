@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 15:52:23 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/08 17:49:12 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int		ft_amount(long long nb, long long base, t_map *map)
 	{
 		nb = nb / base;
 		amount++;
+		if (map->apos > -1)
+			map->apos++;
 	}
+	map->apos = (map->apos - 1) / 3;
 	return (amount);
 }
 
@@ -47,8 +50,8 @@ char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 	long long	amount;
 
 	amount = ft_amount(nb, base, map);
-	if (c == 'X')
-		tab = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	if (c == 'X' || c == 'F' || c == 'A')
+		tab= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	else
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
 	if (base < 2 || base > 36)
@@ -63,4 +66,34 @@ char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 		nb = nb / base;
 	}
 	return (str);
+}
+
+int	ft_precpower(t_map *map, int base)
+{
+	int result;
+	int	power;
+
+	result = 1;
+	power = 0;
+	if (map->prec == -1)
+		map->prec = map->prec + 7;
+	if (map->prec == 0)
+		return (0);
+	if (map->prec > 0)
+		power = map->prec;
+	while (power > 0)
+	{
+		result = result * base;
+		power--;
+	}
+	return (result);
+}
+
+long long int	ft_floatrect(double f, t_map *map)
+{
+	if (map->prec == 0)
+	{
+		f = f + 0.5;
+	}
+	return ((long long)f);
 }

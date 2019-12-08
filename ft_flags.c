@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 19:27:07 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/08 19:01:20 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,17 @@ void	ft_bonusflagfinder(const char *s, t_map *map)
 			map->pos++;
 		}
 	}
-	while (ft_strchr("jztL", s[map->pos]))
+	if (s[map->pos] == 'L')
+	{
+		map->bon = 5;
+		map->pos++;
+	}
+	if (s[map->pos] == 39)
+	{
+		map->apos = 0;
+		map->pos++;
+	}
+	while (ft_strchr("jzt", s[map->pos]))
 		map->pos++;
 }
 
@@ -88,7 +98,7 @@ void	ft_secondflagfinder(const char *s, t_map *map, va_list *args)
 
 void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 {
-	while (ft_strchr("cspdiouxX%nfge", s[map->pos]) == 0)
+	while (ft_strchr("cspdiouxX%nfFgGeEaA", s[map->pos]) == 0)
 	{
 		while (s[map->pos] == '-')
 		{

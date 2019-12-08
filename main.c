@@ -1,6 +1,7 @@
 
 #include "ft_printf.h"
 #include <limits.h>
+#include <locale.h>
 
 int	main(void)
 {
@@ -244,10 +245,31 @@ int	main(void)
 	printf("<- %i \n\n", printf("%p, %9.2p, %2.9p, %.5p", NULL, 1234, 1234, 0));
 
 	ft_printf("\033[1;31m");
-	ft_printf("Floats :\n");
-	ft_printf("<- %i \n", ft_printf("%f, %7f, %f", f1, f1, f1));
-	printf("<- %i \n", printf("%f, %7f, %f", f1, f1, f1));
-//	printf("<- %i \n\n", printf("%f, %7f, %f", d1, d1, d1));
+	ft_printf("Floats: f, 07.2f, .0f\n");
+	ft_printf("<- %i \n", ft_printf("%.7f, %07.2f, %.0f", f1, f1, f1));
+	printf("<- %i \n\n", printf("%.7f, %07.2f, %.0f", f1, f1, f1));
+	ft_printf("<- %i \n", ft_printf("%f, %07.2f, %.f", d1, d1, d1));
+	printf("<- %i \n\n", printf("%f, %07.2f, %.f", d1, d1, d1));
+	ft_printf("\033[0;32m");
+	ft_printf("Hexadecimal floats: a, 07.2a, .0a\n"); 
+	ft_printf("<- %i \n", ft_printf("%#a, %-13.2a, %.0a", f1, f1, f1));
+	printf("<- %i \n\n", printf("%#a, %-13.2a, %.0a", f1, f1, f1));
+
+	ft_printf("\033[1;32m");
+	ft_printf("Scientific notation!:\n");
+	ft_printf("<- %d \n", ft_printf("%e, %14e, %.e, %.8e", f1, f1, f1, f3));
+	printf("<- %d \n\n", printf("%e, %14e, %.e, %.8e", f1, f1, f1, f3));
+
+	ft_printf("\033[1;32m");
+	ft_printf("G conversion:\n");
+	ft_printf("<- %d \n", ft_printf("%g, %14g, %.g, %.8g", f1, f1, f1, f3));
+	printf("<- %d \n\n", printf("%g, %14g, %.g, %.8g", f1, f1, f1, f3));
+
+	ft_printf("\033[1;32m");
+	ft_printf("Apostrophe flag:\n");
+	setlocale(LC_ALL, "en_US");
+	ft_printf("<- %i \n", ft_printf("%'i, %8'd, %'p, %'x", 12757, 965787, &nlptr, 286331153));
+	printf("<- %i \n\n", printf("%'i, %8'd, %'p, %'x", 12757, 965787, &nlptr, 286331153));
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");

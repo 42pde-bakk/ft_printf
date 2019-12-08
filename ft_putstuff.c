@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/04 19:30:32 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/06 12:37:28 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_putsign_fd(int fd, t_map *map)
 	{
 		return ;
 	}
-	if (map->typ == 'd' || map->typ == 'i')
+	if (map->typ == 'd' || map->typ == 'i' || map->typ == 'f' || map->typ == 'F')
 	{
 		if (map->nb < 0)
 		{

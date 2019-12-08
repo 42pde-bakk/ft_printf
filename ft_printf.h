@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/05 17:39:28 by peerdb        ########   odam.nl         */
+/*   Updated: 2019/12/08 17:49:48 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ typedef struct	s_map
 	int				pfill;
 	int				bon;
 	int				hash;
+	int				apos;
 	int				plus;
 	long long		nb;
+	long long		sci;
 }				t_map;
 
 void			*ft_memset(void *b, int c, size_t len);
@@ -52,8 +54,11 @@ void			ft_nbrflagger_fd(char *s, int fd, t_map *map);
 void			ft_lastputstuff(char *s, int fd, t_map *map);
 void			ft_nbrputter_fd(char *s, int fd, t_map *map);
 
+int				ft_amount(long long nb, long long base, t_map *map);
 int				ft_absolutely(long long nb);
 char			*ft_itoa_base(long long nb, long long base, t_map *map, char c);
+int				ft_precpower(t_map *map, int base);
+long long int	ft_floatrect(double f, t_map *map);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
 void			ft_secondflagfinder(const char *s, t_map *map, va_list *args);
@@ -74,6 +79,10 @@ int				ft_longlongfinder(const char *s, t_map *map, va_list *args);
 int				ft_shortshortfinder(const char *s, t_map *map, va_list *args);
 
 int				ft_floatfinder(const char *s, t_map *map, va_list *args);
+void			ft_floatflagger(char *s, int fd, t_map *map);
+long long		ft_round(double f, t_map *map, int base);
+char			*ft_floatjoin(char *s, char *ds, t_map *map);
+
 void			ft_writer(const char *s, t_map *map);
 int				ft_printf(const char *s, ...);
 
