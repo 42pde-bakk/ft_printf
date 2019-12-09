@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/03 14:43:20 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/06 13:10:40 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/03 14:43:20 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/09 18:32:42 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_shortfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 8, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -44,7 +44,7 @@ int	ft_shortfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 16, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -63,7 +63,7 @@ int	ft_shortfinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -72,7 +72,7 @@ int	ft_shortfinder(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 10, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);

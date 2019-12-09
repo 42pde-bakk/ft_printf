@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 12:38:41 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/09 19:45:54 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,28 @@ void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strchr(const char *s, int c);
+char			*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c);
 
 int				ft_strlen(const char *s);
-void			ft_putchar_fd(char c, int fd, t_map *map, int check);
-void			ft_putstr_fd(char *s, int fd, t_map *map, int check);
-void			ft_nbrprinter_fd(char *s, int fd, t_map *map);
+void			ft_putchar_flags(char c, int fd, t_map *map, int check);
+void			ft_putstr_flags(char *s, int fd, t_map *map, int check);
+void			ft_nbrprinter_flags(char *s, int fd, t_map *map);
 void			ft_putsign_fd(int fd, t_map *map);
 
 void			ft_put0x(int fd, t_map *map);
-void			ft_nbrflagger_fd(char *s, int fd, t_map *map);
+void			ft_nbrflagger_flags(char *s, int fd, t_map *map);
 void			ft_lastputstuff(char *s, int fd, t_map *map);
-void			ft_nbrputter_fd(char *s, int fd, t_map *map);
+void			ft_nbrputter_flags(char *s, int fd, t_map *map);
 
 int				ft_amount(long long nb, long long base, t_map *map);
 int				ft_absolutely(long long nb);
 char			*ft_itoa_base(long long nb, long long base, t_map *map, char c);
 int				ft_precpower(t_map *map, int base);
-long long int	ft_floatrect(double f, t_map *map);
+long long int	ft_floatrect(long double f, t_map *map);
 
 void			ft_flagfinder(const char *s, t_map *map, va_list *args);
 void			ft_secondflagfinder(const char *s, t_map *map, va_list *args);
 void			ft_flagfiller(int fd, t_map *map, char *s);
-
-t_map			*ft_initmap(void);
-t_map			*ft_resetmap(t_map *map);
 
 int				ft_typefinder(const char *s, t_map *map, va_list *args);
 int				ft_typefinder2(const char *s, t_map *map, va_list *args);
@@ -78,17 +76,20 @@ int				ft_shortfinder(const char *s, t_map *map, va_list *args);
 int				ft_longlongfinder(const char *s, t_map *map, va_list *args);
 int				ft_shortshortfinder(const char *s, t_map *map, va_list *args);
 
+char			*ft_floatjoin2(char *result, int i, char *ds, t_map *map);
 char			*ft_floatjoin(char *s, char *ds, t_map *map);
-long long		ft_round(double f, t_map *map, int base);
 void			ft_putscience(int fd, t_map *map);
-long long		ft_divpower(long long nb);
 void			ft_floatflagger(char *s, int fd, t_map *map);
+void			ft_morebonusflags(const char *s, t_map *map);
+
+long long		ft_round(double f, t_map *map, int base);
+long long		ft_divpower(long long nb);
+char			*ft_floathandler(double f, long long base, t_map *map);
+char			*ft_science(double f, t_map *map);
 int				ft_floatfinder(const char *s, t_map *map, va_list *args);
 
-char			*ft_G_handler(double f, long long base, t_map *map);
-char			*ft_G_science(double f, t_map *map);
-int				ft_G_conversion(const char *s, t_map *map, va_list *args);
-
+t_map			*ft_initmap(void);
+t_map			*ft_resetmap(t_map *map);
 void			ft_writer(const char *s, t_map *map);
 int				ft_printf(const char *s, ...);
 

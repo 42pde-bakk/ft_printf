@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/03 14:36:31 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2019/12/08 17:50:06 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/03 14:36:31 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/09 18:37:07 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_longfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long int);
 		string = ft_itoa_base(u, 8, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -44,7 +44,7 @@ int	ft_longfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long int);
 		string = ft_itoa_base(u, 16, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -63,7 +63,7 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, long int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -72,7 +72,7 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long int);
 		string = ft_itoa_base(u, 10, map, s[map->pos]);
-		ft_nbrputter_fd(string, 1, map);
+		ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -80,7 +80,7 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	return (ft_longfinder2(s, map, args));
 }
 
-int ft_longdoublefinder(const char *s, t_map *map, va_list *args)
+int	ft_longdoublefinder(const char *s, t_map *map, va_list *args)
 {
 	long double		f;
 	long long		dec;

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/08 19:01:20 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/09 18:27:40 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,6 @@ void	ft_bonusflagfinder(const char *s, t_map *map)
 			map->pos++;
 		}
 	}
-	if (s[map->pos] == 'L')
-	{
-		map->bon = 5;
-		map->pos++;
-	}
-	if (s[map->pos] == 39)
-	{
-		map->apos = 0;
-		map->pos++;
-	}
-	while (ft_strchr("jzt", s[map->pos]))
-		map->pos++;
 }
 
 void	ft_thirdflagfinder(const char *s, t_map *map, va_list *args)
@@ -118,6 +106,7 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 		ft_secondflagfinder(s, map, args);
 		ft_thirdflagfinder(s, map, args);
 		ft_bonusflagfinder(s, map);
+		ft_morebonusflags(s, map);
 	}
 	return ;
 }
@@ -131,9 +120,9 @@ void	ft_flagfiller(int fd, t_map *map, char *s)
 	while (map->min == 0 && map->pad > 0)
 	{
 		if (map->zero == 1)
-			ft_putchar_fd('0', fd, map, 0);
+			ft_putchar_flags('0', fd, map, 0);
 		else
-			ft_putchar_fd(' ', fd, map, 0);
+			ft_putchar_flags(' ', fd, map, 0);
 		map->pad--;
 	}
 	return ;

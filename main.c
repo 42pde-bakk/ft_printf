@@ -106,8 +106,8 @@ int	main(void)
 
 	ft_printf("\033[1;35m");
 	ft_printf("hexadecimals: -0Flag, +0Flag, -8.7Flag, #Flag:\n");
-	ft_printf("<- %i \n", ft_printf("%-0x$ %+0x$ %-8.7x$ %x$", x1, x2, x3, x4));
-	printf("<- %i \n\n", printf("%-0x$ %+0x$ %-8.7x$ %x$", x1, x2, x3, x4));
+	ft_printf("<- %i \n", ft_printf("%-0x$ %+0x$ %-8.7x$ %x$", x1, x2, ULONG_MAX, x4));
+	printf("<- %i \n\n", printf("%-0x$ %+0x$ %-8.7x$ %x$", x1, x2, ULONG_MAX, x4));
 	ft_printf("\033[0m");
 
 	ft_printf("\033[0;36m");
@@ -118,14 +118,14 @@ int	main(void)
 
 	ft_printf("\033[1;36m");
 	ft_printf("HEXADECIMALS: -0Flag, +0Flag, -8.7Flag, #Flag:\n");
-	ft_printf("<- %i \n", ft_printf("%-0X$ %+0X$ %-8.7X$ %#X$", X1, X2, X3, X4));
-	printf("<- %i \n\n", printf("%-0X$ %+0X$ %-8.7X$ %#X$", X1, X2, X3, X4));
+	ft_printf("<- %i \n", ft_printf("%-0X$ %+0X$ %-8.7X$ %#X$", ULONG_MAX, X2, X3, X4));
+	printf("<- %i \n\n", printf("%-0X$ %+0X$ %-8.7X$ %#X$", ULONG_MAX, X2, X3, X4));
 	ft_printf("\033[0m");
 
 	ft_printf("\033[0;31m");
-	ft_printf("Pointer addresses (discards all flags) :\n");
-	ft_printf("<- %i \n", ft_printf("%-8p$ %07p$ %.8p$ %.*p$", &s1, &s2, &s3, H, &s4));
-	printf("<- %i \n\n", printf("%-8p$ %07p$ %.8p$ %.*p$", &s1, &s2, &s3, H, &s4));
+	ft_printf("Pointer addresses:\n");
+	ft_printf("<- %i \n", ft_printf("%-8p$ %07p$ %.8p$ %.*p$", ULONG_MAX, &s2, &s3, H, &s4));
+	printf("<- %i \n\n", printf("%-8p$ %07p$ %.8p$ %.*p$", ULONG_MAX, &s2, &s3, H, &s4));
 	ft_printf("\033[0m");
 
 	ft_printf("\033[1;31m");
@@ -261,8 +261,8 @@ int	main(void)
 
 	ft_printf("\033[1;32m");
 	ft_printf("G conversion:\n");
-	ft_printf("<- %d \n", ft_printf("%g, %14g, %.g, %.8g", f1, f1, f1, f3));
-	printf("<- %d \n\n", printf("%g, %14g, %.g, %.8g", f1, f1, f1, f3));
+	printf("<- %d \n\n", printf("%g, %g, %g", f1, f2, f1));
+	ft_printf("<- %d \n", ft_printf("%g, %g, %g", f1, f2, f1));
 
 	ft_printf("\033[1;32m");
 	ft_printf("Apostrophe flag:\n");

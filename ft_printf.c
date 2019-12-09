@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/08 17:39:43 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/09 18:31:12 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_writer(const char *s, t_map *map)
 			map->pos++;
 			return ;
 		}
-		ft_putchar_fd(s[map->pos], 1, map, 0);
+		ft_putchar_flags(s[map->pos], 1, map, 0);
 		map->pos++;
 	}
 	return ;

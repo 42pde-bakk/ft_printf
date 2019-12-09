@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_itoa_base.c                                     :+:    :+:            */
+/*   ft_ultoa.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 19:45:33 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/09 19:23:32 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2019/12/09 19:30:44 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				ft_amount(long long nb, long long base, t_map *map)
+static int	ft_unsigned_amount(unsigned long long nb, long base, t_map *map)
 {
-	long long	amount;
+	long amount;
 
 	amount = 0;
 	map->nb = nb;
@@ -36,64 +36,34 @@ int				ft_amount(long long nb, long long base, t_map *map)
 	return (amount);
 }
 
-int				ft_absolutely(long long nb)
+static int	ft_unsigned_abs(unsigned long long nb)
 {
 	if (nb < 0)
 		nb = -nb;
 	return (nb);
 }
 
-char			*ft_itoa_base(long long nb, long long base, t_map *map, char c)
+char		*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c)
 {
-	char		*str;
-	char		*tab;
-	long long	amount;
+	char	*str;
+	char	*tab;
+	long	amount;
 
-	amount = ft_amount(nb, base, map);
+	amount = ft_unsigned_amount(nb, bas, map);
 	if (c == 'X' || c == 'F' || c == 'A')
 		tab = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	else
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
-	if (base < 2 || base > 36)
+	if (bas < 2 || bas > 36)
 		return (0);
 	str = (char*)ft_calloc(amount + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (amount > 0)
 	{
-		str[amount - 1] = tab[ft_absolutely(nb % base)];
+		str[amount - 1] = tab[ft_unsigned_abs(nb % bas)];
 		amount--;
-		nb = nb / base;
+		nb = nb / bas;
 	}
 	return (str);
-}
-
-int				ft_precpower(t_map *map, int base)
-{
-	int result;
-	int	power;
-
-	result = 1;
-	power = 0;
-	if (map->prec == -1)
-		map->prec = map->prec + 7;
-	if (map->prec == 0)
-		return (0);
-	if (map->prec > 0)
-		power = map->prec;
-	while (power > 0)
-	{
-		result = result * base;
-		power--;
-	}
-	return (result);
-}
-
-long long int	ft_floatrect(long double f, t_map *map)
-{
-	if (map->prec == 0)
-	{
-		f = f + 0.5;
-	}
-	return ((long long)f);
 }
