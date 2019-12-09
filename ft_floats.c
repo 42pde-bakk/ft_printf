@@ -6,7 +6,7 @@
 /*   By: peerdb <peerdb@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/05 17:03:06 by peerdb         #+#    #+#                */
-/*   Updated: 2019/12/08 19:05:21 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/09 12:47:21 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ char	*ft_floatjoin(char *s, char *ds, t_map *map)
 	char	*result;
 	int		i;
 	int		n;
-	int		fill;
 	int		length;
 
 	i = 0;
 	n = 0;
 	length = ft_strlen(s) + ft_strlen(ds);
+	printf("length = %i\n", length);
 	if (map->prec == 0)
 		length = ft_strlen(s);
 	if (map->typ == 'e' || map->typ == 'E')
 		length = length + 4;
-	result = ft_calloc(length + 1, sizeof(char));
+	result = ft_calloc(length + 2, sizeof(char));
 	if (result == 0)
 		return (NULL);
 	while (s && s[i])
@@ -67,7 +67,7 @@ long long	ft_round(double f, t_map *map, int base)
 	return (result);
 }
 
-void	ft_putscience(char *s, int fd, t_map *map)
+void	ft_putscience(int fd, t_map *map)
 {
 	char	*science;
 	char	*power;
@@ -76,8 +76,10 @@ void	ft_putscience(char *s, int fd, t_map *map)
 
 	i = 3;
 	count = 0;
+//	printf("test1, maptype = %c\n", map->typ);
 	if (map->typ != 'e' && map->typ != 'E')
 		return ;
+//	printf("test2\n");
 	while (map->sci >= 10)
 	{
 		count++;
@@ -113,7 +115,7 @@ void	ft_floatflagger(char *s, int fd, t_map *map)
 	ft_putsign_fd(fd, map);
 	ft_put0x(fd, map);
 	ft_putstr_fd(s, fd, map, 0);
-	ft_putscience(s, fd, map);
+	ft_putscience(fd, map);
 	while (map->min == 1 && map->pad > 0)
 	{
 		ft_putchar_fd(' ', fd, map, 0);
@@ -134,7 +136,7 @@ long long	ft_divpower(long long nb)
 	return (result);
 }
 
-char	*ft_floathandler(double f, long long base, t_map *map, int gcheck)
+char	*ft_floathandler(double f, long long base, t_map *map)
 {
 	char		*string;
 	char		*decstring;
@@ -144,14 +146,12 @@ char	*ft_floathandler(double f, long long base, t_map *map, int gcheck)
 	string = ft_itoa_base(ft_floatrect(f, map), base, map, map->typ);
 	decstring = ft_itoa_base(dec, base, map, map->typ);
 	string = ft_floatjoin(string, decstring, map);
-	if (gcheck == 1)
-		return (string);
 	ft_floatflagger(string, 1, map);
 	free(string);
 	return (0);
 }
 
-char	*ft_science(double f, t_map *map, int gcheck)
+char	*ft_science(double f, t_map *map)
 {
 	char		*ret;
 	long long	div;
@@ -159,38 +159,7 @@ char	*ft_science(double f, t_map *map, int gcheck)
 	div = ft_divpower((long long)f);
 	map->sci = (long long)f;
 	f = f / div;
-	ret = ft_floathandler(f, 10, map, 0);
-	if (gcheck == 1)
-		return (ret);
-	return (0);
-}
-
-int	ft_gconversion(const char *s, t_map *map, va_list *args)
-{
-	double	f;
-	char	*flo;
-	char	*scn;
-
-	if (s[map->pos] == 'g')
-	{
-		f = va_arg(*args, double);
-		scn = ft_science(f, map, 1);
-		flo = ft_floathandler(f, 10, map, 1);
-		if (ft_strlen(scn) + 4 < ft_strlen(flo))
-		{
-			map->typ = 'e';
-			ft_floatflagger(scn, 1, map);
-		}
-		else
-		{
-			map->typ = 'f';
-			ft_floatflagger(flo, 1, map);
-		}
-		free(flo);
-		free(scn);
-		map->pos++;
-		return (1);
-	}
+	ret = ft_floathandler(f, 10, map);
 	return (0);
 }
 
@@ -201,23 +170,23 @@ int		ft_floatfinder(const char *s, t_map *map, va_list *args)
 	if (s[map->pos] == 'f' || s[map->pos] == 'F')
 	{
 		f = va_arg(*args, double);
-		ft_floathandler(f, 10, map, 0);
+		ft_floathandler(f, 10, map);
 		map->pos++;
 		return (1);
 	}
 	if (s[map->pos] == 'a' || s[map->pos] == 'A')
 	{
 		f = va_arg(*args, double);
-		ft_floathandler(f, 16, map, 0);
+		ft_floathandler(f, 16, map);
 		map->pos++;
 		return (1);
 	}
 	if (s[map->pos] == 'e' || s[map->pos] == 'E')
 	{
 		f = va_arg(*args, double);
-		ft_science(f, map, 0);
+		ft_science(f, map);
 		map->pos++;
 		return (1);
 	}
-	return (ft_gconversion(s, map, args));
+	return (ft_G_conversion(s, map, args));
 }

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/08 17:49:48 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/09 12:38:41 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,16 @@ int				ft_shortfinder(const char *s, t_map *map, va_list *args);
 int				ft_longlongfinder(const char *s, t_map *map, va_list *args);
 int				ft_shortshortfinder(const char *s, t_map *map, va_list *args);
 
-int				ft_floatfinder(const char *s, t_map *map, va_list *args);
-void			ft_floatflagger(char *s, int fd, t_map *map);
-long long		ft_round(double f, t_map *map, int base);
 char			*ft_floatjoin(char *s, char *ds, t_map *map);
+long long		ft_round(double f, t_map *map, int base);
+void			ft_putscience(int fd, t_map *map);
+long long		ft_divpower(long long nb);
+void			ft_floatflagger(char *s, int fd, t_map *map);
+int				ft_floatfinder(const char *s, t_map *map, va_list *args);
+
+char			*ft_G_handler(double f, long long base, t_map *map);
+char			*ft_G_science(double f, t_map *map);
+int				ft_G_conversion(const char *s, t_map *map, va_list *args);
 
 void			ft_writer(const char *s, t_map *map);
 int				ft_printf(const char *s, ...);
