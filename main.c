@@ -42,9 +42,12 @@ int	main(void)
 	int			H = 7;
 	char		*str;
 
-	float		f1 = 392.65;
-	float		f2 = 413.6587;
-	float		f3 = 81201727.2;
+	float		f1 = 32.65;
+	float		f2 = 413.658712312;
+	float		f3 = 8727.2123123;
+	float		f4 = 3123592.651123123;
+	float		f5 = 4112312573.6587;
+	float		f6 = 81201456457457727.32;
 
 	double		d1 = 392.65;
 	double		d2 = 413.6587;
@@ -261,10 +264,13 @@ int	main(void)
 
 	ft_printf("\033[1;32m");
 	ft_printf("G conversion:\n");
-	printf("<- %d \n\n", printf("%g, %g, %g", f1, f2, f1));
 	ft_printf("<- %d \n", ft_printf("%g, %g, %g", f1, f2, f1)); 
+	printf("<- %d \n\n", printf("%g, %g, %g", f1, f2, f1));
+	ft_printf("\033[0;33m");
+	ft_printf("<- %d \n", ft_printf("%g, %g, %g", f4, f5, f6)); 
+	printf("<- %d \n\n", printf("%g, %g, %g", f4, f5, f6));
 
-	ft_printf("\033[1;32m");
+	ft_printf("\033[1;33m");
 	ft_printf("Apostrophe flag:\n");
 	setlocale(LC_ALL, "en_US");
 	ft_printf("<- %i \n", ft_printf("%'i, %8'd, %'p, %'x", 12757, 965787, &nlptr, 286331153));
