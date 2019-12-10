@@ -1,6 +1,7 @@
 #include "ft_printf.h"
 #include <limits.h>
 #include <locale.h>
+#include <math.h>
 
 int	main(void)
 {
@@ -275,6 +276,17 @@ int	main(void)
 	setlocale(LC_ALL, "en_US");
 	ft_printf("<- %i \n", ft_printf("%'i, %8'd, %'p, %'x", 12757, 965787, &nlptr, 286331153));
 	printf("<- %i \n\n", printf("%'i, %8'd, %'p, %'x", 12757, 965787, &nlptr, 286331153));
+
+	ft_printf("\033[0;34m");
+	ft_printf("Floating point exceptions:\n");
+	ft_printf("<- %i \n", ft_printf("%f, %f, %f", -NAN, -INFINITY, +INFINITY));
+	printf("<- %i \n\n", printf("%f, %f, %f", -NAN, -INFINITY, +INFINITY));
+
+	double zero = -0.00;
+
+	ft_printf("\033[1;34m");
+//	ft_printf("<- %i \n", ft_printf("%f, %f, %f", -0, 0.00, 0));
+	printf("<- %i \n\n", printf("%f, %f, %f", zero, zero, zero));
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");

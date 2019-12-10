@@ -6,7 +6,7 @@
 #    By: pde-bakk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/02 17:36:51 by pde-bakk       #+#    #+#                 #
-#    Updated: 2019/12/09 19:36:40 by pde-bakk      ########   odam.nl          #
+#    Updated: 2019/12/10 16:03:42 by pde-bakk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = libftprintf.a
 
 SRC = ft_printf.c ft_flags.c ft_itoa_base.c ft_putstuff.c ft_memsetfunctions.c \
 ft_typefinder.c ft_longfinders.c ft_longlongfinders.c ft_shortfinders.c \
-ft_shortshortfinders.c ft_floats.c ft_moreputstuff.c ft_ultoa.c ft_floats2.c
+ft_shortshortfinders.c ft_floats.c ft_moreputstuff.c ft_ultoa.c ft_floats2.c \
+ft_floats3.c
 
 OBJ = $(SRC:.c=.o)
 

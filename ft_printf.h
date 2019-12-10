@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 13:27:57 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 15:55:47 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ long long		ft_divpower(long long nb);
 char			*ft_floathandler(double f, long long base, t_map *map);
 void			ft_science(double f, t_map *map);
 int				ft_floatfinder(const char *s, t_map *map, va_list *args);
+
+int				ft_floatingpointexception(double f, t_map *map);
+int				ft_exponent(long long f);
+int				ft_g2_finder(double f, t_map *map);
+int				ft_g_finder(const char *s, t_map *map, double f);
 
 t_map			*ft_initmap(void);
 t_map			*ft_resetmap(t_map *map);
