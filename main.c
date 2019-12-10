@@ -262,7 +262,7 @@ int	main(void)
 	ft_printf("\033[1;32m");
 	ft_printf("G conversion:\n");
 	printf("<- %d \n\n", printf("%g, %g, %g", f1, f2, f1));
-	ft_printf("<- %d \n", ft_printf("%g, %g, %g", f1, f2, f1));
+	ft_printf("<- %d \n", ft_printf("%g, %g, %g", f1, f2, f1)); 
 
 	ft_printf("\033[1;32m");
 	ft_printf("Apostrophe flag:\n");
@@ -286,7 +286,7 @@ int	main(void)
 	ft_printf("W ");
 	ft_printf("\033[1;32m");
 	ft_printf("!\n");
-//	while (1) {}
+	while (1) {}
 
 	return 0;
 }

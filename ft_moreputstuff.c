@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/04 19:24:51 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 19:51:54 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 13:27:00 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ char	*ft_apostrophe(char *s, t_map *map)
 
 	i = 0;
 	n = 0;
-	if (map->apos <= -1 || map->typ == 'x' || map->typ == 'X' ||
-	map->typ == 'A' || map->typ == 'A')
-		map->apos = -1;
+	if (map->apos <= -1 || map->typ == 'x' || map->typ == 'X')
+		return (s);
 	ret = ft_calloc(ft_strlen(s) + map->apos + 1, sizeof(char));
 	if (!ret)
 		return (0);
@@ -38,6 +37,7 @@ char	*ft_apostrophe(char *s, t_map *map)
 			map->apos--;
 		}
 	}
+	free(s);
 	return (ret);
 }
 
@@ -112,7 +112,7 @@ void	ft_lastputstuff(char *s, int fd, t_map *map)
 	}
 }
 
-void	ft_nbrputter_flags(char *s, int fd, t_map *map)
+char	*ft_nbrputter_flags(char *s, int fd, t_map *map)
 {
 	s = ft_apostrophe(s, map);
 	map->pfill = map->prec - ft_strlen(s);
@@ -135,4 +135,5 @@ void	ft_nbrputter_flags(char *s, int fd, t_map *map)
 		map->pad--;
 	}
 	ft_lastputstuff(s, fd, map);
+	return (s);
 }

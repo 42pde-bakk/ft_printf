@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 21:32:40 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 19:20:11 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 13:28:47 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 	{
 		ptr = va_arg(*args, void *);
 		string = ft_ultoa((unsigned long long)ptr, 16, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -62,7 +62,7 @@ int	ft_typefinder3(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -71,7 +71,7 @@ int	ft_typefinder3(const char *s, t_map *map, va_list *args)
 	{
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 10, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -88,7 +88,7 @@ int	ft_typefinder2(const char *s, t_map *map, va_list *args)
 	{
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 8, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -97,7 +97,7 @@ int	ft_typefinder2(const char *s, t_map *map, va_list *args)
 	{
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 16, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);

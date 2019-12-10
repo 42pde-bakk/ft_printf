@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:46:34 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 18:32:57 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 13:30:16 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_shortshortfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 8, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -44,7 +44,7 @@ int	ft_shortshortfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 16, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -63,7 +63,7 @@ int	ft_shortshortfinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -72,7 +72,7 @@ int	ft_shortshortfinder(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 10, map, s[map->pos]);
-		ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, 1, map);
 		free(string);
 		map->pos++;
 		return (1);

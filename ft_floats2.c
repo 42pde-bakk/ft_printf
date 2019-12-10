@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 18:16:32 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 18:35:28 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 11:33:24 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_putscience(int fd, t_map *map)
 	if (count < 10)
 		ft_putchar_flags('0', fd, map, 0);
 	ft_putstr_flags(power, 1, map, 0);
+	free(power);
 }
 
 void	ft_floatflagger(char *s, int fd, t_map *map)

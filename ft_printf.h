@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 19:45:54 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 13:27:57 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ft_putsign_fd(int fd, t_map *map);
 void			ft_put0x(int fd, t_map *map);
 void			ft_nbrflagger_flags(char *s, int fd, t_map *map);
 void			ft_lastputstuff(char *s, int fd, t_map *map);
-void			ft_nbrputter_flags(char *s, int fd, t_map *map);
+char			*ft_nbrputter_flags(char *s, int fd, t_map *map);
 
 int				ft_amount(long long nb, long long base, t_map *map);
 int				ft_absolutely(long long nb);
@@ -85,7 +85,7 @@ void			ft_morebonusflags(const char *s, t_map *map);
 long long		ft_round(double f, t_map *map, int base);
 long long		ft_divpower(long long nb);
 char			*ft_floathandler(double f, long long base, t_map *map);
-char			*ft_science(double f, t_map *map);
+void			ft_science(double f, t_map *map);
 int				ft_floatfinder(const char *s, t_map *map, va_list *args);
 
 t_map			*ft_initmap(void);

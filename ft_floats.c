@@ -6,7 +6,7 @@
 /*   By: peerdb <peerdb@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/05 17:03:06 by peerdb         #+#    #+#                */
-/*   Updated: 2019/12/09 18:20:44 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 11:32:40 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*ft_floathandler(double f, long long base, t_map *map)
 	return (0);
 }
 
-char		*ft_science(double f, t_map *map)
+void		ft_science(double f, t_map *map)
 {
 	char		*ret;
 	long long	div;
@@ -60,8 +60,8 @@ char		*ft_science(double f, t_map *map)
 	div = ft_divpower((long long)f);
 	map->sci = (long long)f;
 	f = f / div;
-	ret = ft_floathandler(f, 10, map);
-	return (0);
+	ft_floathandler(f, 10, map);
+	return ;
 }
 
 int			ft_floatfinder(const char *s, t_map *map, va_list *args)
