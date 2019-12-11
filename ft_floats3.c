@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_floats3.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
+/*   By: pde-bakk <pde-bakk@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/10 14:16:15 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 16:00:50 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/10 20:12:45 by pde-bakk       #+#    #+#                */
+/*   Updated: 2019/12/11 12:58:08 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_floatingpointexception(double f, t_map *map)
 		map->pos++;
 		return (1);
 	}
-	else if (f < (__DBL_MAX__ * -1))
+	else if (f < __DBL_MAX__ * -1)
 	{
 		ft_putstr_flags("-inf", 1, map, 1);
 		map->pos++;
@@ -32,7 +32,8 @@ int	ft_floatingpointexception(double f, t_map *map)
 		map->pos++;
 		return (1);
 	}
-	return (0);
+	else
+		return (0);
 }
 
 int	ft_exponent(long long f)
@@ -59,12 +60,10 @@ int	ft_g2_finder(double f, t_map *map)
 
 int	ft_g_finder(const char *s, t_map *map, double f)
 {
-//	double	f;
-	int		exp;
+	int	exp;
 
 	if (s[map->pos] == 'g' || s[map->pos] == 'G')
 	{
-//		f = va_arg(*args, double);
 		if (map->prec == -1)
 			map->prec = 6;
 		if (map->prec == 0)

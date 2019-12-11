@@ -6,7 +6,7 @@
 /*   By: peerdb <peerdb@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/05 17:03:06 by peerdb         #+#    #+#                */
-/*   Updated: 2019/12/10 15:55:15 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/10 20:11:07 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long long	ft_divpower(long long nb)
 	return (result);
 }
 
-char		*ft_floathandler(double f, long long base, t_map *map)
+void		ft_floathandler(double f, long long base, t_map *map)
 {
 	char		*string;
 	char		*decstring;
@@ -51,7 +51,7 @@ char		*ft_floathandler(double f, long long base, t_map *map)
 	string = ft_floatjoin(string, decstring, map);
 	ft_floatflagger(string, 1, map);
 	free(string);
-	return (0);
+	return ;
 }
 
 void		ft_science(double f, t_map *map)
@@ -70,18 +70,14 @@ int			ft_floatfinder(const char *s, t_map *map, va_list *args)
 	double		f;
 
 	if (s[map->pos] == 'f' || s[map->pos] == 'F' || s[map->pos] == 'g' ||
-	s[map->pos] == 'G' || s[map->pos] == 'e' || s[map->pos] == 'E' ||
-	s[map->pos] == 'a' || s[map->pos] == 'A')
+		s[map->pos] == 'G' || s[map->pos] == 'e' || s[map->pos] == 'E')
 	{
 		f = va_arg(*args, double);
 		if (ft_floatingpointexception(f, map) == 1)
 			return (1);
 		if (s[map->pos] == 'f' || s[map->pos] == 'F')
 		{
-			if (s[map->pos] == 'a' || s[map->pos] == 'A')
-				ft_floathandler(f, 16, map);
-			else
-				ft_floathandler(f, 10, map);
+			ft_floathandler(f, 10, map);
 			map->pos++;
 			return (1);
 		}
