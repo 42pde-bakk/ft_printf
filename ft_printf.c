@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 18:31:12 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/12 18:10:17 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_map	*ft_initmap(void)
 	t_map	*map;
 
 	map = malloc(sizeof(t_map));
+	if (map == NULL)
+		return (NULL);
 	map->pos = 0;
 	map->size = 0;
 	map->typ = 'a';

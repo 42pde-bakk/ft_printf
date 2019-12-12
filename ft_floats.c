@@ -6,7 +6,7 @@
 /*   By: peerdb <peerdb@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/05 17:03:06 by peerdb         #+#    #+#                */
-/*   Updated: 2019/12/10 20:11:07 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/11 13:18:18 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long long	ft_round(double f, t_map *map, int base)
 	else
 		result = (result - 5) / base;
 	while (map->typ == 'g' && result % base == 0)
-		result = result / 10;
+		result = result / base;
 	return (result);
 }
 

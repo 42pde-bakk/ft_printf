@@ -6,11 +6,33 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:36:31 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 13:30:57 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2019/12/11 13:15:16 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_longdoublefinder(const char *s, t_map *map, va_list *args)
+{
+	long double		f;
+	long long		dec;
+	char			*string;
+	char			*decstring;
+
+	if (s[map->pos] == 'f' || s[map->pos] == 'F')
+	{
+		f = va_arg(*args, long double);
+		dec = ft_round(f, map, 10);
+		string = ft_itoa_base(ft_floatrect(f, map), 10, map, s[map->pos]);
+		decstring = ft_itoa_base(dec, 10, map, s[map->pos]);
+		string = ft_floatjoin(string, decstring, map);
+		ft_floatflagger(string, 1, map);
+		free(string);
+		map->pos++;
+		return (1);
+	}
+	return (0);
+}
 
 int	ft_longfinder3(const char *s, t_map *map, va_list *args)
 {
@@ -23,7 +45,7 @@ int	ft_longfinder3(const char *s, t_map *map, va_list *args)
 		map->pos++;
 		return (1);
 	}
-	return (0);
+	return (ft_longdoublefinder(s, map, args));
 }
 
 int	ft_longfinder2(const char *s, t_map *map, va_list *args)
@@ -78,28 +100,6 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 		return (1);
 	}
 	return (ft_longfinder2(s, map, args));
-}
-
-int	ft_longdoublefinder(const char *s, t_map *map, va_list *args)
-{
-	long double		f;
-	long long		dec;
-	char			*string;
-	char			*decstring;
-
-	if (s[map->pos] == 'f' || s[map->pos] == 'F')
-	{
-		f = va_arg(*args, long double);
-		dec = ft_round(f, map, 10);
-		string = ft_itoa_base(ft_floatrect(f, map), 10, map, s[map->pos]);
-		decstring = ft_itoa_base(dec, 10, map, s[map->pos]);
-		string = ft_floatjoin(string, decstring, map);
-		ft_floatflagger(string, 1, map);
-		free(string);
-		map->pos++;
-		return (1);
-	}
-	return (0);
 }
 
 int	ft_thebigshort(const char *s, t_map *map, va_list *args)
