@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/25 17:00:44 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/12 18:10:17 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/06/09 17:24:55 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_writer(const char *s, t_map *map)
 			map->pos++;
 			return ;
 		}
-		ft_putchar_flags(s[map->pos], 1, map, 0);
+		ft_putchar_flags(s[map->pos], map->fd, map, 0);
 		map->pos++;
 	}
 	return ;
@@ -78,6 +78,28 @@ int		ft_printf(const char *s, ...)
 	t_map	*map;
 
 	map = ft_initmap();
+	map->fd = 1;
+	va_start(args, s);
+	while (s[map->pos])
+	{
+		ft_writer(s, map);
+		ft_flagfinder(s, map, &args);
+		if (ft_thebigshort(s, map, &args) == 0)
+			ft_typefinder(s, map, &args);
+		map = ft_resetmap(map);
+	}
+	va_end(args);
+	free(map);
+	return (map->size);
+}
+
+int		ft_dprintf(int fd, const char *s, ...)
+{
+	va_list	args;
+	t_map	*map;
+
+	map = ft_initmap();
+	map->fd = fd;
 	va_start(args, s);
 	while (s[map->pos])
 	{

@@ -285,7 +285,7 @@ int	main(void)
 	ft_printf("<- %i \n", ft_printf("%f, %f, %f", -NAN, -INFINITY, +INFINITY));
 	printf("<- %i \n\n", printf("%f, %f, %f", -NAN, -INFINITY, +INFINITY));
 
-	ft_printf("\033[1;34m");
+	ft_printf("test \t haha\n");
 
 	ft_printf("\033[1;31m");
 	ft_printf("R ");

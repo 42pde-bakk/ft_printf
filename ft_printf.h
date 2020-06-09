@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/26 15:19:04 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 20:11:31 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/06/09 17:23:33 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct	s_map
 {
+	int				fd;
 	int				pos;
 	int				size;
 	char			typ;
@@ -97,5 +98,6 @@ t_map			*ft_initmap(void);
 t_map			*ft_resetmap(t_map *map);
 void			ft_writer(const char *s, t_map *map);
 int				ft_printf(const char *s, ...);
+int				ft_dprintf(int fd, const char *s, ...);
 
 #endif

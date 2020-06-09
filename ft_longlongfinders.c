@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/03 14:40:30 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 13:31:36 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/03 14:40:30 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/06/09 17:18:58 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_longlongfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long long int);
 		string = ft_itoa_base(u, 8, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, map->fd, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -44,7 +44,7 @@ int	ft_longlongfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long long int);
 		string = ft_itoa_base(u, 16, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, map->fd, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -63,7 +63,7 @@ int	ft_longlongfinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, long long int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, map->fd, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -72,7 +72,7 @@ int	ft_longlongfinder(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long long int);
 		string = ft_itoa_base(u, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, 1, map);
+		string = ft_nbrputter_flags(string, map->fd, map);
 		free(string);
 		map->pos++;
 		return (1);
