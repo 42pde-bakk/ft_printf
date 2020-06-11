@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/06/09 17:23:33 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2020/06/11 17:14:18 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include "libft.h"
+# include "get_next_line.h"
 
 typedef struct	s_map
 {
@@ -39,10 +41,6 @@ typedef struct	s_map
 	long long		sci;
 }				t_map;
 
-void			*ft_memset(void *b, int c, size_t len);
-void			ft_bzero(void *s, size_t n);
-void			*ft_calloc(size_t count, size_t size);
-char			*ft_strchr(const char *s, int c);
 char			*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c);
 
 int				ft_strlen(const char *s);

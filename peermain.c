@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "include/ft_printf.h"
 #include <limits.h>
 #include <locale.h>
 #include <math.h>
@@ -303,7 +303,6 @@ int	main(void)
 	ft_printf("W ");
 	ft_printf("\033[1;32m");
 	ft_printf("!\n");
-	while (1) {}
 
 	return 0;
 }

@@ -6,25 +6,15 @@
 #    By: pde-bakk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/02 17:36:51 by pde-bakk      #+#    #+#                  #
-#    Updated: 2020/06/11 17:12:54 by pde-bakk      ########   odam.nl          #
+#    Updated: 2020/06/11 17:06:05 by pde-bakk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = get_next_line.a
 
-SRC_DIR = ./src
-SRC = ft_printf.c ft_flags.c ft_itoa_base.c ft_putstuff.c \
-ft_typefinder.c ft_longfinders.c ft_longlongfinders.c ft_shortfinders.c \
-ft_shortshortfinders.c ft_floats.c ft_moreputstuff.c ft_ultoa.c ft_floats2.c \
-ft_floats3.c
-
-GNLOBJ = ./get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
-
-FILES = $(addprefix $(SRC_DIR)/, $(SRC))
+SRC = get_next_line.c get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
-
-HEADER = ft_printf.h
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -41,25 +31,15 @@ all: $(NAME)
 
 $(NAME):
 	@echo "$(YELLOW)Linking the library"
-	@make bonus -s -C ./libft/
-	@make re -s -C ./get_next_line/
-	@gcc -c $(FLAGS) -I ./include/ $(FILES)
-	@cp ./libft/libft.a $(NAME)
-	@ar -rcs $(NAME) $(OBJ) $(GNLOBJ)
-	@make clean
-	@rm -rf libft.a
+	@gcc -c $(FLAGS) -I ./include/ $(SRC)
+	@ar -rcs $(NAME) $(OBJ)
 	@echo "$(GREEN)Done!$(RESET)"
 
 clean:
 	@echo "$(RED)Cleaning...$(RESET)"
-	@make clean -s -C ./libft
 	@/bin/rm -f *.o *~ *.gch
 
 fclean: clean
-	@make fclean -s -C ./libft
 	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-bonus: re
-	@echo "$(PINK)Linking bonus files$(RESET)"
