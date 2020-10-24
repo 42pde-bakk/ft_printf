@@ -6,7 +6,7 @@
 #    By: pde-bakk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/02 17:36:51 by pde-bakk      #+#    #+#                  #
-#    Updated: 2020/10/24 11:43:34 by pde-bakk      ########   odam.nl          #
+#    Updated: 2020/10/24 11:53:59 by pde-bakk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,13 +50,13 @@ $(NAME):
 
 clean:
 	@echo "$(RED)Cleaning...$(RESET)"
-	@make clean -s -C libft
-	@make clean -s -C get_next_line
+	@make clean -s -C ./libft
+	@make clean -s -C ./get_next_line
 	@/bin/rm -f *.o *~ *.gch
 
 fclean: clean
-	@make fclean -s -C libft
-	@make fclean -s -C get_next_line
+	@make fclean -s -C ./libft
+	@make fclean -s -C ./get_next_line
 	@/bin/rm -f $(NAME)
 
 re: fclean all
