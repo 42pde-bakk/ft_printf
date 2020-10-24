@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/06/11 17:14:18 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2020/10/24 11:38:00 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct	s_map
 
 char			*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c);
 
-int				ft_strlen(const char *s);
 void			ft_putchar_flags(char c, int fd, t_map *map, int check);
 void			ft_putstr_flags(char *s, int fd, t_map *map, int check);
 void			ft_nbrprinter_flags(char *s, int fd, t_map *map);

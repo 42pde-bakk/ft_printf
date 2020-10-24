@@ -6,7 +6,7 @@
 #    By: pde-bakk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/02 17:36:51 by pde-bakk      #+#    #+#                  #
-#    Updated: 2020/06/11 17:12:54 by pde-bakk      ########   odam.nl          #
+#    Updated: 2020/10/24 11:43:34 by pde-bakk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,17 +46,17 @@ $(NAME):
 	@gcc -c $(FLAGS) -I ./include/ $(FILES)
 	@cp ./libft/libft.a $(NAME)
 	@ar -rcs $(NAME) $(OBJ) $(GNLOBJ)
-	@make clean
-	@rm -rf libft.a
 	@echo "$(GREEN)Done!$(RESET)"
 
 clean:
 	@echo "$(RED)Cleaning...$(RESET)"
-	@make clean -s -C ./libft
+	@make clean -s -C libft
+	@make clean -s -C get_next_line
 	@/bin/rm -f *.o *~ *.gch
 
 fclean: clean
-	@make fclean -s -C ./libft
+	@make fclean -s -C libft
+	@make fclean -s -C get_next_line
 	@/bin/rm -f $(NAME)
 
 re: fclean all

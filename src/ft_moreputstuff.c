@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/04 19:24:51 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 13:27:00 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/04 19:24:51 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/10/24 11:39:05 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
 		map->pad++;
 	if (map->prec == -1 && map->typ == 'o' && map->hash == 1 && map->nb != 0)
 		map->pad--;
-	if (map->prec < ft_strlen(s) && map->prec != -1 && map->typ == 'o'
+	if (map->prec < (int)ft_strlen(s) && map->prec != -1 && map->typ == 'o'
 	&& map->hash == 1)
 		map->pad--;
 	if (map->hash == 1 && map->nb != 0 && map->min == 0)
@@ -116,8 +116,8 @@ char	*ft_nbrputter_flags(char *s, int fd, t_map *map)
 {
 	s = ft_apostrophe(s, map);
 	map->pfill = map->prec - ft_strlen(s);
-	if (map->width > ft_strlen(s) && map->width > map->prec)
-		map->pad = (map->prec > ft_strlen(s)) ? map->width - map->prec
+	if (map->width > (int)ft_strlen(s) && map->width > map->prec)
+		map->pad = (map->prec > (int)ft_strlen(s)) ? map->width - map->prec
 		: map->width - ft_strlen(s);
 	ft_nbrflagger_flags(s, fd, map);
 	if (map->typ == 'p' && map->min == 0)

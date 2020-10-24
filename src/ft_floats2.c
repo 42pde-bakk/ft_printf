@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/09 18:16:32 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/10 14:15:35 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/09 18:16:32 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/10/24 11:39:17 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_putscience(int fd, t_map *map)
 
 void	ft_floatflagger(char *s, int fd, t_map *map)
 {
-	if (map->width > ft_strlen(s))
+	if (map->width > (int)ft_strlen(s))
 		map->pad = map->width - ft_strlen(s);
 	if (map->typ == 'e' || map->typ == 'E')
 		map->pad = map->pad - 4;

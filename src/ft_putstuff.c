@@ -5,26 +5,12 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/04 17:26:41 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 18:38:31 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/10/24 11:38:04 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
-}
 
 void	ft_putchar_flags(char c, int fd, t_map *map, int check)
 {

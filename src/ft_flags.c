@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/29 20:51:26 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 18:27:40 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/29 20:51:26 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2020/10/24 11:38:38 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 
 void	ft_flagfiller(int fd, t_map *map, char *s)
 {
-	if (ft_strlen(s) > map->prec && map->prec != -1)
+	if ((int)ft_strlen(s) > map->prec && map->prec != -1)
 		map->pad = map->width - map->prec;
 	else
 		map->pad = map->width - ft_strlen(s);
