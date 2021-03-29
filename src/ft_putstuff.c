@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2021/03/29 13:07:33 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 13:13:01 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putchar_flags(char c, int fd, t_map *map, int check)
 {
+	int	ret;
+
 	if (check == 1 && map->width > 0)
 	{
 		map->width--;
@@ -26,7 +28,8 @@ void	ft_putchar_flags(char c, int fd, t_map *map, int check)
 			map->width--;
 		}
 	}
-	(void)write(fd, &c, 1);
+	ret = write(fd, &c, 1);
+	(void)ret;
 	map->size++;
 	while (check == 1 && map->min == 1 && map->width > 0)
 	{
