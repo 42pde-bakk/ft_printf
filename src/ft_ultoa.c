@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 19:23:32 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2021/03/29 13:08:00 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 13:11:41 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@ static int	ft_unsigned_amount(unsigned long long nb, long base, t_map *map)
 	return (amount);
 }
 
-static int	ft_unsigned_abs(unsigned long long nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
-}
-
 char	*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c)
 {
 	char	*str;
@@ -61,7 +54,7 @@ char	*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c)
 		return (NULL);
 	while (amount > 0)
 	{
-		str[amount - 1] = tab[ft_unsigned_abs(nb % bas)];
+		str[amount - 1] = tab[nb % bas];
 		amount--;
 		nb = nb / bas;
 	}
