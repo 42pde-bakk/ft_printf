@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 21:32:40 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/06/09 17:17:01 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 12:57:57 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 	}
 	if (s[map->pos] == 'n')
 	{
-		n = va_arg(*args, int*);
+		n = va_arg(*args, int *);
 		*n = map->size;
 		map->pos++;
 		return (1);
@@ -54,9 +54,9 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 
 int	ft_typefinder3(const char *s, t_map *map, va_list *args)
 {
-	unsigned	o;
-	int			i;
-	char		*string;
+	unsigned int	o;
+	int				i;
+	char			*string;
 
 	if (s[map->pos] == 'd' || s[map->pos] == 'i')
 	{
@@ -81,8 +81,8 @@ int	ft_typefinder3(const char *s, t_map *map, va_list *args)
 
 int	ft_typefinder2(const char *s, t_map *map, va_list *args)
 {
-	unsigned	o;
-	char		*string;
+	unsigned int	o;
+	char			*string;
 
 	if (s[map->pos] == 'o')
 	{

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: peerdb <peerdb@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/12/05 17:03:06 by peerdb         #+#    #+#                */
-/*   Updated: 2019/12/11 13:18:18 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/12/05 17:03:06 by peerdb        #+#    #+#                 */
+/*   Updated: 2021/03/29 12:15:10 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long long	ft_divpower(long long nb)
 	return (result);
 }
 
-void		ft_floathandler(double f, long long base, t_map *map)
+void	ft_floathandler(double f, long long base, t_map *map)
 {
 	char		*string;
 	char		*decstring;
@@ -54,7 +54,7 @@ void		ft_floathandler(double f, long long base, t_map *map)
 	return ;
 }
 
-void		ft_science(double f, t_map *map)
+void	ft_science(double f, t_map *map)
 {
 	long long	div;
 
@@ -65,12 +65,12 @@ void		ft_science(double f, t_map *map)
 	return ;
 }
 
-int			ft_floatfinder(const char *s, t_map *map, va_list *args)
+int	ft_floatfinder(const char *s, t_map *map, va_list *args)
 {
 	double		f;
 
-	if (s[map->pos] == 'f' || s[map->pos] == 'F' || s[map->pos] == 'g' ||
-		s[map->pos] == 'G' || s[map->pos] == 'e' || s[map->pos] == 'E')
+	if (s[map->pos] == 'f' || s[map->pos] == 'F' || s[map->pos] == 'g'
+		|| s[map->pos] == 'G' || s[map->pos] == 'e' || s[map->pos] == 'E')
 	{
 		f = va_arg(*args, double);
 		if (ft_floatingpointexception(f, map) == 1)

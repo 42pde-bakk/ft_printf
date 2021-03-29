@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/04 19:24:51 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/10/24 11:39:05 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 13:03:35 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_put0x(int fd, t_map *map)
 	if (map->nb == 0 && map->prec == 0 && map->hash == 1 && map->typ == 'o')
 		ft_putchar_flags('0', fd, map, 0);
 	if (map->bon != 5 && (map->typ == 'p' || map->typ == 'a' || map->typ == 'A'
-	|| (map->hash == 1 && map->nb != 0 && (map->typ == 'x' || map->typ == 'X'
-	|| map->typ == 'o'))))
+			|| (map->hash == 1 && map->nb != 0 && (map->typ == 'x'
+					|| map->typ == 'X' || map->typ == 'o'))))
 	{
 		ft_putchar_flags('0', fd, map, 0);
 		if (map->min == 1)
@@ -58,7 +58,7 @@ void	ft_put0x(int fd, t_map *map)
 				map->pad--;
 		}
 		if (map->typ == 'x' || map->typ == 'p' || map->typ == 'X'
-	|| map->typ == 'A' || map->typ == 'a')
+			|| map->typ == 'A' || map->typ == 'a')
 		{
 			if (map->typ == 'X' || map->typ == 'A')
 				ft_putchar_flags('X', fd, map, 0);
@@ -86,7 +86,7 @@ void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
 	if (map->prec == -1 && map->typ == 'o' && map->hash == 1 && map->nb != 0)
 		map->pad--;
 	if (map->prec < (int)ft_strlen(s) && map->prec != -1 && map->typ == 'o'
-	&& map->hash == 1)
+		&& map->hash == 1)
 		map->pad--;
 	if (map->hash == 1 && map->nb != 0 && map->min == 0)
 	{
@@ -97,19 +97,12 @@ void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
 	}
 }
 
-void	ft_lastputstuff(char *s, int fd, t_map *map)
+static void	norm_v3_doesnt_allow_ternaries_anymore(t_map *map, const char *s)
 {
-	while (map->pfill > 0)
-	{
-		ft_putchar_flags('0', fd, map, 0);
-		map->pfill--;
-	}
-	ft_nbrprinter_flags(s, fd, map);
-	while (map->min == 1 && map->pad > 0)
-	{
-		ft_putchar_flags(' ', fd, map, 0);
-		map->pad--;
-	}
+	if (map->prec > (int) ft_strlen(s))
+		map->pad = map->width - map->prec;
+	else
+		map->pad = map->width - ft_strlen(s);
 }
 
 char	*ft_nbrputter_flags(char *s, int fd, t_map *map)
@@ -117,8 +110,7 @@ char	*ft_nbrputter_flags(char *s, int fd, t_map *map)
 	s = ft_apostrophe(s, map);
 	map->pfill = map->prec - ft_strlen(s);
 	if (map->width > (int)ft_strlen(s) && map->width > map->prec)
-		map->pad = (map->prec > (int)ft_strlen(s)) ? map->width - map->prec
-		: map->width - ft_strlen(s);
+		norm_v3_doesnt_allow_ternaries_anymore(map, s);
 	ft_nbrflagger_flags(s, fd, map);
 	if (map->typ == 'p' && map->min == 0)
 		map->pad = map->pad - 2;

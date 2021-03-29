@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/26 15:19:04 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/10/24 11:38:00 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 12:14:17 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "libft.h"
-# include "get_next_line.h"
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int				fd;
 	int				pos;
@@ -96,5 +94,11 @@ t_map			*ft_resetmap(t_map *map);
 void			ft_writer(const char *s, t_map *map);
 int				ft_printf(const char *s, ...);
 int				ft_dprintf(int fd, const char *s, ...);
+
+size_t			ft_strlen(const char *s);
+void			*ft_memset(void *b, int c, size_t len);
+void			ft_bzero(void *s, size_t n);
+void			*ft_calloc(size_t count, size_t size);
+char			*ft_strchr(const char *s, int c);
 
 #endif

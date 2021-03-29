@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 17:26:41 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/10/24 11:38:04 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 13:03:23 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,20 @@ void	ft_putsign_fd(int fd, t_map *map)
 			ft_putchar_flags('+', fd, map, 0);
 			map->plus = 0;
 		}
+	}
+}
+
+void	ft_lastputstuff(char *s, int fd, t_map *map)
+{
+	while (map->pfill > 0)
+	{
+		ft_putchar_flags('0', fd, map, 0);
+		map->pfill--;
+	}
+	ft_nbrprinter_flags(s, fd, map);
+	while (map->min == 1 && map->pad > 0)
+	{
+		ft_putchar_flags(' ', fd, map, 0);
+		map->pad--;
 	}
 }

@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/28 18:29:13 by pde-bakk       #+#    #+#                */
-/*   Updated: 2020/01/09 12:38:32 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/28 18:29:13 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2021/03/29 12:16:17 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				ft_amount(long long nb, long long base, t_map *map)
+int	ft_amount(long long nb, long long base, t_map *map)
 {
 	long long	amount;
 
@@ -36,14 +36,14 @@ int				ft_amount(long long nb, long long base, t_map *map)
 	return (amount);
 }
 
-int				ft_absolutely(long long nb)
+int	ft_absolutely(long long nb)
 {
 	if (nb < 0)
 		nb = -nb;
 	return (nb);
 }
 
-char			*ft_itoa_base(long long nb, long long base, t_map *map, char c)
+char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 {
 	char		*str;
 	char		*tab;
@@ -56,7 +56,7 @@ char			*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
 	if (base < 2 || base > 36)
 		return (0);
-	str = (char*)ft_calloc(amount + 1, sizeof(char));
+	str = (char *)ft_calloc(amount + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (amount > 0)
@@ -68,9 +68,9 @@ char			*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 	return (str);
 }
 
-int				ft_precpower(t_map *map, int base)
+int	ft_precpower(t_map *map, int base)
 {
-	int result;
+	int	result;
 	int	power;
 
 	result = 1;

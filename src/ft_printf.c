@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 17:00:44 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/06/09 17:24:55 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 12:56:45 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_writer(const char *s, t_map *map)
 	return ;
 }
 
-int		ft_printf(const char *s, ...)
+int	ft_printf(const char *s, ...)
 {
 	va_list	args;
 	t_map	*map;
@@ -93,7 +93,7 @@ int		ft_printf(const char *s, ...)
 	return (map->size);
 }
 
-int		ft_dprintf(int fd, const char *s, ...)
+int	ft_dprintf(int fd, const char *s, ...)
 {
 	va_list	args;
 	t_map	*map;

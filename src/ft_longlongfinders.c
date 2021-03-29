@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/03 14:40:30 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/06/09 17:18:58 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 12:17:01 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_longlongfinder3(const char *s, t_map *map, va_list *args)
 
 	if (s[map->pos] == 'n')
 	{
-		n = va_arg(*args, long long int*);
+		n = va_arg(*args, long long *);
 		*n = map->size;
 		map->pos++;
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 18:16:32 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2020/10/24 11:39:17 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 12:15:33 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_floatjoin2(char *result, int i, char *ds, t_map *map)
 		result[i] = '.';
 		i++;
 		while (map->typ != 'e' && map->typ != 'g'
-		&& map->prec - ft_strlen(ds) > 0)
+			&& map->prec - ft_strlen(ds) > 0)
 		{
 			result[i] = '0';
 			i++;

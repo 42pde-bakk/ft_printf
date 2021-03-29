@@ -5,12 +5,22 @@
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/11/14 18:30:59 by pde-bakk       #+#    #+#                */
-/*   Updated: 2019/12/09 19:22:55 by pde-bakk      ########   odam.nl         */
+/*   Created: 2019/11/14 18:30:59 by pde-bakk      #+#    #+#                 */
+/*   Updated: 2021/03/29 12:17:17 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdlib.h>
+
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		++i;
+	return (i);
+}
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -43,7 +53,7 @@ void	ft_bzero(void *s, size_t n)
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
 	if (count == 0 || size == 0)
 	{
@@ -58,8 +68,8 @@ void	*ft_calloc(size_t count, size_t size)
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	len = ft_strlen(s) + 1;
 	i = 0;
