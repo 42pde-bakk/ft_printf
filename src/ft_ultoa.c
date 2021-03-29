@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 19:23:32 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2021/03/29 12:58:29 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 13:08:00 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_unsigned_amount(unsigned long long nb, long base, t_map *map)
 	map->nb = nb;
 	if (nb == 0)
 		amount++;
-	if (nb < 0 && base == 10)
+	if (base == 10)
 	{
 		map->plus = 0;
 		nb = -nb;

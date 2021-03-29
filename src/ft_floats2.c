@@ -6,7 +6,7 @@
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/09 18:16:32 by pde-bakk      #+#    #+#                 */
-/*   Updated: 2021/03/29 12:15:33 by pde-bakk      ########   odam.nl         */
+/*   Updated: 2021/03/29 13:09:39 by pde-bakk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ char	*ft_floatjoin(char *s, char *ds, t_map *map)
 {
 	char	*result;
 	int		i;
-	int		n;
 	int		length;
 
 	i = 0;
-	n = 0;
 	length = ft_strlen(s) + ft_strlen(ds);
 	if (map->prec == 0)
 		length = ft_strlen(s);
@@ -68,10 +66,8 @@ void	ft_putscience(int fd, t_map *map)
 {
 	char	*science;
 	char	*power;
-	int		i;
 	int		count;
 
-	i = 3;
 	count = 0;
 	if (map->typ != 'e' && map->typ != 'E')
 		return ;
