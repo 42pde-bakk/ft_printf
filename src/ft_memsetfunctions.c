@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memsetfunctions.c                               :+:    :+:            */
+/*   printf_memsetfunctions.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pde-bakk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 
-size_t	ft_strlen(const char *s)
+size_t	printf_strlen(const char *s)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*printf_memset(void *b, int c, size_t len)
 {
 	size_t			i;
 	unsigned char	*ptr;
@@ -37,7 +37,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-void	ft_bzero(void *s, size_t n)
+static void	printf_bzero(void *s, size_t n)
 {
 	size_t			i;
 	unsigned char	*ptr;
@@ -51,7 +51,7 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*printf_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
@@ -62,16 +62,16 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	ptr = malloc(count * size);
 	if (ptr)
-		ft_bzero(ptr, count * size);
+		printf_bzero(ptr, count * size);
 	return (ptr);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*printf_strchr(const char *s, int c)
 {
 	int	i;
 	int	len;
 
-	len = ft_strlen(s) + 1;
+	len = printf_strlen(s) + 1;
 	i = 0;
 	while (i < len)
 	{

@@ -93,10 +93,9 @@ t_map			*ft_initmap(void);
 t_map			*ft_resetmap(t_map *map);
 void			ft_writer(const char *s, t_map *map);
 
-size_t			ft_strlen(const char *s);
-void			*ft_memset(void *b, int c, size_t len);
-void			ft_bzero(void *s, size_t n);
-void			*ft_calloc(size_t count, size_t size);
-char			*ft_strchr(const char *s, int c);
+size_t			printf_strlen(const char *s);
+void			*printf_memset(void *b, int c, size_t len);
+void			*printf_calloc(size_t count, size_t size);
+char			*printf_strchr(const char *s, int c);
 
 #endif

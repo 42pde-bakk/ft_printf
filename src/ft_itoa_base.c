@@ -56,7 +56,7 @@ char	*ft_itoa_base(long long nb, long long base, t_map *map, char c)
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
 	if (base < 2 || base > 36)
 		return (0);
-	str = (char *)ft_calloc(amount + 1, sizeof(char));
+	str = (char *)printf_calloc(amount + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (amount > 0)

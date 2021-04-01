@@ -86,7 +86,7 @@ void	ft_secondflagfinder(const char *s, t_map *map, va_list *args)
 
 void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 {
-	while (ft_strchr("cspdiouxX%nfFgGeEaA", s[map->pos]) == 0)
+	while (printf_strchr("cspdiouxX%nfFgGeEaA", s[map->pos]) == 0)
 	{
 		while (s[map->pos] == '-')
 		{
@@ -113,10 +113,10 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 
 void	ft_flagfiller(int fd, t_map *map, char *s)
 {
-	if ((int)ft_strlen(s) > map->prec && map->prec != -1)
+	if ((int)printf_strlen(s) > map->prec && map->prec != -1)
 		map->pad = map->width - map->prec;
 	else
-		map->pad = map->width - ft_strlen(s);
+		map->pad = map->width - printf_strlen(s);
 	while (map->min == 0 && map->pad > 0)
 	{
 		if (map->zero == 1)

@@ -22,7 +22,7 @@ char	*ft_floatjoin2(char *result, int i, char *ds, t_map *map)
 		result[i] = '.';
 		i++;
 		while (map->typ != 'e' && map->typ != 'g'
-			&& map->prec - ft_strlen(ds) > 0)
+			&& map->prec - printf_strlen(ds) > 0)
 		{
 			result[i] = '0';
 			i++;
@@ -43,12 +43,12 @@ char	*ft_floatjoin(char *s, char *ds, t_map *map)
 	int		length;
 
 	i = 0;
-	length = ft_strlen(s) + ft_strlen(ds);
+	length = printf_strlen(s) + printf_strlen(ds);
 	if (map->prec == 0)
-		length = ft_strlen(s);
+		length = printf_strlen(s);
 	if (map->typ == 'e' || map->typ == 'E')
 		length = length + 4;
-	result = ft_calloc(length + 3, sizeof(char));
+	result = printf_calloc(length + 3, sizeof(char));
 	if (result == 0)
 		return (NULL);
 	while (s && s[i])
@@ -90,8 +90,8 @@ void	ft_putscience(int fd, t_map *map)
 
 void	ft_floatflagger(char *s, int fd, t_map *map)
 {
-	if (map->width > (int)ft_strlen(s))
-		map->pad = map->width - ft_strlen(s);
+	if (map->width > (int)printf_strlen(s))
+		map->pad = map->width - printf_strlen(s);
 	if (map->typ == 'e' || map->typ == 'E')
 		map->pad = map->pad - 4;
 	if ((map->plus == 1 && map->nb >= 0) || map->nb < 0)
@@ -127,6 +127,6 @@ void	ft_morebonusflags(const char *s, t_map *map)
 		map->apos = 0;
 		map->pos++;
 	}
-	while (ft_strchr("jzt", s[map->pos]))
+	while (printf_strchr("jzt", s[map->pos]))
 		map->pos++;
 }

@@ -22,7 +22,7 @@ char	*ft_apostrophe(char *s, t_map *map)
 	n = 0;
 	if (map->apos <= -1 || map->typ == 'x' || map->typ == 'X')
 		return (s);
-	ret = ft_calloc(ft_strlen(s) + map->apos + 1, sizeof(char));
+	ret = printf_calloc(printf_strlen(s) + map->apos + 1, sizeof(char));
 	if (!ret)
 		return (0);
 	while (s[n])
@@ -30,7 +30,7 @@ char	*ft_apostrophe(char *s, t_map *map)
 		ret[i] = s[n];
 		i++;
 		n++;
-		if ((ft_strlen(s) - n) % 3 == 0 && map->apos > 0)
+		if ((printf_strlen(s) - n) % 3 == 0 && map->apos > 0)
 		{
 			ret[i] = ',';
 			i++;
@@ -85,7 +85,7 @@ void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
 		map->pad++;
 	if (map->prec == -1 && map->typ == 'o' && map->hash == 1 && map->nb != 0)
 		map->pad--;
-	if (map->prec < (int)ft_strlen(s) && map->prec != -1 && map->typ == 'o'
+	if (map->prec < (int)printf_strlen(s) && map->prec != -1 && map->typ == 'o'
 		&& map->hash == 1)
 		map->pad--;
 	if (map->hash == 1 && map->nb != 0 && map->min == 0)
@@ -99,17 +99,17 @@ void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
 
 static void	norm_v3_doesnt_allow_ternaries_anymore(t_map *map, const char *s)
 {
-	if (map->prec > (int) ft_strlen(s))
+	if (map->prec > (int) printf_strlen(s))
 		map->pad = map->width - map->prec;
 	else
-		map->pad = map->width - ft_strlen(s);
+		map->pad = map->width - printf_strlen(s);
 }
 
 char	*ft_nbrputter_flags(char *s, int fd, t_map *map)
 {
 	s = ft_apostrophe(s, map);
-	map->pfill = map->prec - ft_strlen(s);
-	if (map->width > (int)ft_strlen(s) && map->width > map->prec)
+	map->pfill = map->prec - printf_strlen(s);
+	if (map->width > (int)printf_strlen(s) && map->width > map->prec)
 		norm_v3_doesnt_allow_ternaries_anymore(map, s);
 	ft_nbrflagger_flags(s, fd, map);
 	if (map->typ == 'p' && map->min == 0)

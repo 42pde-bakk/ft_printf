@@ -22,7 +22,7 @@ int	ft_typefinder5(const char *s, t_map *map, va_list *args)
 	}
 	if (ft_floatfinder(s, map, args) == 1)
 		return (1);
-	while (ft_strchr("cspdiuxX%nfFgGeEaA", s[map->pos]) == 0)
+	while (printf_strchr("cspdiuxX%nfFgGeEaA", s[map->pos]) == 0)
 		map->pos++;
 	return (0);
 }
