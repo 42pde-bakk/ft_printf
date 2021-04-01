@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 static int	ft_unsigned_amount(unsigned long long nb, long base, t_map *map)
 {

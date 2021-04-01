@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 int	ft_shortshortfinder3(const char *s, t_map *map, va_list *args)
 {

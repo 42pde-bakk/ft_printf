@@ -16,7 +16,7 @@ SRC_DIR = ./src
 SRC = ft_printf.c ft_flags.c ft_itoa_base.c ft_putstuff.c \
 ft_typefinder.c ft_longfinders.c ft_longlongfinders.c ft_shortfinders.c \
 ft_shortshortfinders.c ft_floats.c ft_moreputstuff.c ft_ultoa.c ft_floats2.c \
-ft_floats3.c printf_memsetfunctions.c
+ft_floats3.c ft_memsetfunctions.c
 
 FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 

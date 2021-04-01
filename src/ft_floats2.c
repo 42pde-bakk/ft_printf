@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 char	*ft_floatjoin2(char *result, int i, char *ds, t_map *map)
 {
