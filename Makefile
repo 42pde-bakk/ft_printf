@@ -38,13 +38,13 @@ RESET = \x1b[0m
 all: $(NAME)
 
 $(NAME):
-	@echo "$(YELLOW)Linking the library"
+	@echo -e "$(YELLOW)Linking the library"
 	@gcc -c $(FLAGS) -I ./include/ $(FILES)
 	@ar -rcs $(NAME) $(OBJ) $(GNLOBJ)
-	@echo "$(GREEN)Done!$(RESET)"
+	@echo -e "$(GREEN)Done!$(RESET)"
 
 clean:
-	@echo "$(RED)Cleaning...$(RESET)"
+	@echo -e "$(RED)Cleaning...$(RESET)"
 	@/bin/rm -f *.o *~ *.gch
 
 fclean: clean
@@ -53,4 +53,4 @@ fclean: clean
 re: fclean all
 
 bonus: re
-	@echo "$(PINK)Linking bonus files$(RESET)"
+	@echo -e "$(PINK)Linking bonus files$(RESET)"
