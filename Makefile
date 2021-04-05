@@ -50,7 +50,6 @@ $(NAME): $(OBJS)
 	@$(CC) -c $(FLAGS) $(INCLUDE) $^ -o $@
 
 clean:
-	@printf "$(RED)Cleaning...$(RESET)\n"
 	@/bin/rm -f *.o *~ *.gch $(OBJS)
 
 fclean: clean
