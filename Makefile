@@ -6,11 +6,12 @@
 #    By: pde-bakk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/12/02 17:36:51 by pde-bakk      #+#    #+#                  #
-#    Updated: 2021/03/29 12:10:48 by pde-bakk      ########   odam.nl          #
+#    Updated: 2021/04/05 14:03:35 by pde-bakk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+INCLUDE = -I ./include_internal
 
 SRC_DIR = ./src
 SRC = ft_printf.c ft_flags.c ft_itoa_base.c ft_putstuff.c \
@@ -20,11 +21,14 @@ ft_floats3.c ft_memsetfunctions.c
 
 FILES = $(addprefix $(SRC_DIR)/, $(SRC))
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(FILES:.c=.o)
 
-HEADER = ft_printf.h
-
-FLAGS = -Wall -Werror -Wextra -Ofast
+FLAGS = -Wall -Werror -Wextra
+ifdef DEBUG
+  FLAGS += -g -fsanitize=address
+else
+  FLAGS += -Ofast
+endif
 
 # COLORS
 PINK = \x1b[35;01m
@@ -37,15 +41,17 @@ RESET = \x1b[0m
 
 all: $(NAME)
 
-$(NAME):
-	@echo -e "$(YELLOW)Linking the library"
-	@gcc -c $(FLAGS) -I ./include/ $(FILES)
-	@ar -rcs $(NAME) $(OBJ) $(GNLOBJ)
-	@echo -e "$(GREEN)Done!$(RESET)"
+$(NAME): $(OBJS)
+	@printf "$(YELLOW)Linking the library\n"
+	ar -rcs $(NAME) $(OBJS)
+	@printf "$(GREEN)Done!$(RESET)\n"
+
+%.o: %.c
+	@$(CC) -c $(FLAGS) $(INCLUDE) $^ -o $@
 
 clean:
-	@echo -e "$(RED)Cleaning...$(RESET)"
-	@/bin/rm -f *.o *~ *.gch
+	@printf "$(RED)Cleaning...$(RESET)\n"
+	@/bin/rm -f *.o *~ *.gch $(OBJS)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
@@ -53,4 +59,4 @@ fclean: clean
 re: fclean all
 
 bonus: re
-	@echo -e "$(PINK)Linking bonus files$(RESET)"
+	@printf "$(PINK)Linking bonus files$(RESET)\n"
