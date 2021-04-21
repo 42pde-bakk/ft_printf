@@ -76,6 +76,7 @@ int	ft_printf(const char *s, ...)
 {
 	va_list	args;
 	t_map	*map;
+	int		ret;
 
 	map = ft_initmap();
 	map->fd = 1;
@@ -89,14 +90,16 @@ int	ft_printf(const char *s, ...)
 		map = ft_resetmap(map);
 	}
 	va_end(args);
+	ret = map->size;
 	free(map);
-	return (map->size);
+	return (ret);
 }
 
 int	ft_dprintf(int fd, const char *s, ...)
 {
 	va_list	args;
 	t_map	*map;
+	int		ret;
 
 	map = ft_initmap();
 	map->fd = fd;
@@ -110,6 +113,7 @@ int	ft_dprintf(int fd, const char *s, ...)
 		map = ft_resetmap(map);
 	}
 	va_end(args);
+	ret = map->size;
 	free(map);
-	return (map->size);
+	return (ret);
 }
