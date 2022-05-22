@@ -10,18 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
-INCLUDE = -I ./include_internal
+NAME = libftprintf.a
+INCLUDE = -I ./include_internal -I ./libft/include
 
-SRC_DIR = ./src
-SRC = ft_printf.c ft_flags.c ft_itoa_base.c ft_putstuff.c \
-ft_typefinder.c ft_longfinders.c ft_longlongfinders.c ft_shortfinders.c \
-ft_shortshortfinders.c ft_floats.c ft_moreputstuff.c ft_ultoa.c ft_floats2.c \
-ft_floats3.c ft_memsetfunctions.c
+SRC_DIR = src
+BUILD_DIR = obj
+SRC_EXT = c
+OBJ_EXT = o
 
-FILES = $(addprefix $(SRC_DIR)/, $(SRC))
+SOURCES := $(shell find $(SRC_DIR) -type f -name "*.$(SRC_EXT)")
+OBJS    := $(SOURCES:.$(SRC_EXT)=.$(OBJ_EXT))
+OBJECTS := $(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%,$(OBJS))
 
-OBJS = $(FILES:.c=.o)
+LIBS = libft.a
 
 FLAGS = -Wall -Werror -Wextra
 ifdef DEBUG
@@ -42,12 +43,19 @@ RESET = \x1b[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): directories $(OBJECTS) $(LIBS)
 	@printf "$(YELLOW)Linking the library\n"
-	ar -rcs $(NAME) $(OBJS)
+	cp libft/libft.a $(NAME)
+	ar -rcs $(NAME) $(OBJECTS)
 	@printf "$(GREEN)Done!$(RESET)\n"
 
-%.o: %.c
+directories:
+	@mkdir -p $(BUILD_DIR)
+
+%.a: %
+	$(MAKE) -C $<
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) -c $(FLAGS) $(INCLUDE) $^ -o $@
 
 clean:

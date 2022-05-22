@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
+#include "libft.h"
 
 static int	ft_unsigned_amount(unsigned long long nb, long base, t_map *map)
 {
@@ -49,7 +50,7 @@ char	*ft_ultoa(unsigned long long nb, long bas, t_map *map, char c)
 		tab = "0123456789abcdefghijklmnopqrstuvwxyz";
 	if (bas < 2 || bas > 36)
 		return (0);
-	str = (char *)printf_calloc(amount + 1, sizeof(char));
+	str = (char *)ft_calloc(amount + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	while (amount > 0)

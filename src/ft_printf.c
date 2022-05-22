@@ -79,6 +79,8 @@ int	ft_printf(const char *s, ...)
 	int		ret;
 
 	map = ft_initmap();
+	if (!map)
+		return (0);
 	map->fd = 1;
 	va_start(args, s);
 	while (s[map->pos])
@@ -102,6 +104,8 @@ int	ft_dprintf(int fd, const char *s, ...)
 	int		ret;
 
 	map = ft_initmap();
+	if (!map)
+		return (0);
 	map->fd = fd;
 	va_start(args, s);
 	while (s[map->pos])
