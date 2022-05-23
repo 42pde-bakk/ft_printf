@@ -59,10 +59,12 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) -c $(FLAGS) $(INCLUDE) $^ -o $@
 
 clean:
-	@/bin/rm -f *.o *~ *.gch $(OBJS)
+	@/bin/rm -f *.o *~ *.gch $(OBJECTS)
+	$(MAKE) $@ -C libft
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME)
+	$(MAKE) $@ -C libft
 
 re: fclean all
 
