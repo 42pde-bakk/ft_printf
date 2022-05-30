@@ -16,19 +16,19 @@ int	ft_floatingpointexception(double f, t_map *map)
 {
 	if (f != f)
 	{
-		ft_putstr_flags("nan", 1, map, 1);
+		ft_putstr_flags("nan", map, 1);
 		map->pos++;
 		return (1);
 	}
 	else if (f < __DBL_MAX__ * -1)
 	{
-		ft_putstr_flags("-inf", 1, map, 1);
+		ft_putstr_flags("-inf", map, 1);
 		map->pos++;
 		return (1);
 	}
 	else if (f > __DBL_MAX__)
 	{
-		ft_putstr_flags("inf", 1, map, 1);
+		ft_putstr_flags("inf", map, 1);
 		map->pos++;
 		return (1);
 	}

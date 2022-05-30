@@ -11,62 +11,62 @@
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
+#include <unistd.h>
 
-void	ft_putchar_flags(char c, int fd, t_map *map, int check)
+void	ft_putchar_flags(char c, t_map *map, int check)
 {
-	int	ret;
-
 	if (check == 1 && map->width > 0)
 	{
 		map->width--;
 		while (map->min == 0 && map->width > 0)
 		{
 			if (map->zero == 0)
-				ft_putchar_flags(' ', fd, map, 0);
+				add_to_buffer(' ', map);
 			else
-				ft_putchar_flags('0', fd, map, 0);
+				add_to_buffer('0', map);
 			map->width--;
 		}
 	}
-	ret = write(fd, &c, 1);
-	(void)ret;
+	add_to_buffer(c, map);
 	map->size++;
 	while (check == 1 && map->min == 1 && map->width > 0)
 	{
-		ft_putchar_flags(' ', fd, map, 0);
+		add_to_buffer(' ', map);
 		map->width--;
 	}
 }
 
-void	ft_putstr_flags(char *s, int fd, t_map *map, int check)
+void	ft_putstr_flags(char *s, t_map *map, int check)
 {
 	int	i;
 
 	i = 0;
 	if (check == 1)
-		ft_flagfiller(fd, map, s);
+		ft_flagfiller(map, s);
 	while (s[i] && (map->prec == -1 || check == 0))
 	{
-		ft_putchar_flags(s[i], fd, map, 0);
+		add_to_buffer(s[i], map);
+//		ft_putchar_flags(s[i], fd, map, 0);
 		i++;
 	}
 	if (check == 0)
 		return ;
 	while (s[i] && map->prec > 0)
 	{
-		ft_putchar_flags(s[i], fd, map, 0);
+		add_to_buffer(s[i], map);
+//		ft_putchar_flags(s[i], fd, map, 0);
 		i++;
 		map->prec--;
 	}
 	while (map->min == 1 && map->pad > 0)
 	{
-		ft_putchar_flags(' ', 1, map, 0);
+		add_to_buffer(' ', map);
+//		ft_putchar_flags(' ', 1, map, 0);
 		map->pad--;
 	}
-	return ;
 }
 
-void	ft_nbrprinter_flags(char *s, int fd, t_map *map)
+void	ft_nbrprinter_flags(char *s, t_map *map)
 {
 	int	i;
 
@@ -76,19 +76,21 @@ void	ft_nbrprinter_flags(char *s, int fd, t_map *map)
 	if (map->nb == 0 && map->prec == 0)
 	{
 		if (map->plus == 1)
-			ft_putchar_flags('+', fd, map, 0);
+			add_to_buffer('+', map);
+//			ft_putchar_flags('+', fd, map, 0);
 		else if (map->width == 0)
 			return ;
 		return ;
 	}
 	while (s[i])
 	{
-		ft_putchar_flags(s[i], fd, map, 0);
+		add_to_buffer(s[i], map);
+//		ft_putchar_flags(s[i], fd, map, 0);
 		i++;
 	}
 }
 
-void	ft_putsign_fd(int fd, t_map *map)
+void	ft_putsign(t_map *map)
 {
 	if (map->nb == 0 && map->plus == 1 && map->prec == 0)
 	{
@@ -98,27 +100,31 @@ void	ft_putsign_fd(int fd, t_map *map)
 	{
 		if (map->nb < 0)
 		{
-			ft_putchar_flags('-', fd, map, 0);
+			add_to_buffer('-', map);
+//			ft_putchar_flags('-', fd, map, 0);
 		}
 		if (map->nb >= 0 && map->plus == 1)
 		{
-			ft_putchar_flags('+', fd, map, 0);
+			add_to_buffer('+', map);
+//			ft_putchar_flags('+', fd, map, 0);
 			map->plus = 0;
 		}
 	}
 }
 
-void	ft_lastputstuff(char *s, int fd, t_map *map)
+void	ft_lastputstuff(char *s, t_map *map)
 {
 	while (map->pfill > 0)
 	{
-		ft_putchar_flags('0', fd, map, 0);
+		add_to_buffer('0', map);
+//		ft_putchar_flags('0', fd, map, 0);
 		map->pfill--;
 	}
-	ft_nbrprinter_flags(s, fd, map);
+	ft_nbrprinter_flags(s, map);
 	while (map->min == 1 && map->pad > 0)
 	{
-		ft_putchar_flags(' ', fd, map, 0);
+		add_to_buffer(' ', map);
+//		ft_putchar_flags(' ', fd, map, 0);
 		map->pad--;
 	}
 }

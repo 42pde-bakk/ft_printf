@@ -12,13 +12,8 @@
 
 #include "ft_printf_internal.h"
 
-t_map	*ft_initmap(void)
+void	ft_initmap(t_map *map)
 {
-	t_map	*map;
-
-	map = malloc(sizeof(t_map));
-	if (map == NULL)
-		return (NULL);
 	map->pos = 0;
 	map->size = 0;
 	map->typ = 'a';
@@ -35,10 +30,9 @@ t_map	*ft_initmap(void)
 	map->plus = 0;
 	map->nb = 0;
 	map->sci = 0;
-	return (map);
 }
 
-t_map	*ft_resetmap(t_map *map)
+void	ft_resetmap(t_map *map)
 {
 	map->typ = 'a';
 	map->min = 0;
@@ -54,7 +48,6 @@ t_map	*ft_resetmap(t_map *map)
 	map->plus = 0;
 	map->nb = 0;
 	map->sci = 0;
-	return (map);
 }
 
 void	ft_writer(const char *s, t_map *map)
@@ -66,58 +59,50 @@ void	ft_writer(const char *s, t_map *map)
 			map->pos++;
 			return ;
 		}
-		ft_putchar_flags(s[map->pos], map->fd, map, 0);
+		add_to_buffer(s[map->pos], map);
+//		ft_putchar_flags(s[map->pos], map->fd, map, 0);
 		map->pos++;
 	}
-	return ;
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
-	t_map	*map;
-	int		ret;
+	t_map	map;
 
-	map = ft_initmap();
-	if (!map)
-		return (0);
-	map->fd = 1;
+	ft_initmap(&map);
+	map.fd = 1;
 	va_start(args, s);
-	while (s[map->pos])
+	while (s[map.pos])
 	{
-		ft_writer(s, map);
-		ft_flagfinder(s, map, &args);
-		if (ft_thebigshort(s, map, &args) == 0)
-			ft_typefinder(s, map, &args);
-		map = ft_resetmap(map);
+		ft_writer(s, &map);
+		ft_flagfinder(s, &map, &args);
+		if (ft_thebigshort(s, &map, &args) == 0)
+			ft_typefinder(s, &map, &args);
+		ft_resetmap(&map);
 	}
 	va_end(args);
-	ret = map->size;
-	free(map);
-	return (ret);
+	flush_buffer(&map);
+	return (map.size);
 }
 
 int	ft_dprintf(int fd, const char *s, ...)
 {
 	va_list	args;
-	t_map	*map;
-	int		ret;
+	t_map	map;
 
-	map = ft_initmap();
-	if (!map)
-		return (0);
-	map->fd = fd;
+	ft_initmap(&map);
+	map.fd = fd;
 	va_start(args, s);
-	while (s[map->pos])
+	while (s[map.pos])
 	{
-		ft_writer(s, map);
-		ft_flagfinder(s, map, &args);
-		if (ft_thebigshort(s, map, &args) == 0)
-			ft_typefinder(s, map, &args);
-		map = ft_resetmap(map);
+		ft_writer(s, &map);
+		ft_flagfinder(s, &map, &args);
+		if (ft_thebigshort(s, &map, &args) == 0)
+			ft_typefinder(s, &map, &args);
+		ft_resetmap(&map);
 	}
 	va_end(args);
-	ret = map->size;
-	free(map);
-	return (ret);
+	flush_buffer(&map);
+	return (map.size);
 }

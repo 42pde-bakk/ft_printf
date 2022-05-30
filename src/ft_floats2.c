@@ -63,7 +63,7 @@ char	*ft_floatjoin(char *s, char *ds, t_map *map)
 	return (result);
 }
 
-void	ft_putscience(int fd, t_map *map)
+void	ft_putscience(t_map *map)
 {
 	char	*science;
 	char	*power;
@@ -81,15 +81,15 @@ void	ft_putscience(int fd, t_map *map)
 		science = "E+";
 	else
 		science = "e+";
-	ft_putstr_flags(science, fd, map, 0);
+	ft_putstr_flags(science,  map, 0); // TODO check
 	power = ft_itoa_base(count, 10, map, map->typ);
 	if (count < 10)
-		ft_putchar_flags('0', fd, map, 0);
-	ft_putstr_flags(power, 1, map, 0);
+		ft_putchar_flags('0',  map, 0); // TODO check
+	ft_putstr_flags(power, map, 0); // TODO check
 	free(power);
 }
 
-void	ft_floatflagger(char *s, int fd, t_map *map)
+void	ft_floatflagger(char *s, t_map *map)
 {
 	if (map->width > (int)ft_strlen(s))
 		map->pad = map->width - ft_strlen(s);
@@ -100,18 +100,18 @@ void	ft_floatflagger(char *s, int fd, t_map *map)
 	while (map->pad > 0 && map->min == 0)
 	{
 		if (map->zero == 1)
-			ft_putchar_flags('0', fd, map, 0);
+			ft_putchar_flags('0', map, 0);
 		else
-			ft_putchar_flags(' ', fd, map, 0);
+			ft_putchar_flags(' ',  map, 0);
 		map->pad--;
 	}
-	ft_putsign_fd(fd, map);
-	ft_put0x(fd, map);
-	ft_putstr_flags(s, fd, map, 0);
-	ft_putscience(fd, map);
+	ft_putsign(map);
+	ft_put0x(map);
+	ft_putstr_flags(s, map, 0);
+	ft_putscience(map);
 	while (map->min == 1 && map->pad > 0)
 	{
-		ft_putchar_flags(' ', fd, map, 0);
+		ft_putchar_flags(' ', map, 0);
 		map->pad--;
 	}
 }

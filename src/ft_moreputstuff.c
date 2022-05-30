@@ -42,15 +42,18 @@ char	*ft_apostrophe(char *s, t_map *map)
 	return (ret);
 }
 
-void	ft_put0x(int fd, t_map *map)
+void	ft_put0x(t_map *map)
 {
-	if (map->nb == 0 && map->prec == 0 && map->hash == 1 && map->typ == 'o')
-		ft_putchar_flags('0', fd, map, 0);
+	if (map->nb == 0 && map->prec == 0 && map->hash == 1 && map->typ == 'o') {
+		add_to_buffer('0', map);
+//		ft_putchar_flags('0', fd, map, 0);
+	}
 	if (map->bon != 5 && (map->typ == 'p' || map->typ == 'a' || map->typ == 'A'
 			|| (map->hash == 1 && map->nb != 0 && (map->typ == 'x'
 					|| map->typ == 'X' || map->typ == 'o'))))
 	{
-		ft_putchar_flags('0', fd, map, 0);
+		add_to_buffer('0', map);
+//		ft_putchar_flags('0', fd, map, 0);
 		if (map->min == 1)
 		{
 			if (map->typ == 'o')
@@ -62,16 +65,18 @@ void	ft_put0x(int fd, t_map *map)
 			|| map->typ == 'A' || map->typ == 'a')
 		{
 			if (map->typ == 'X' || map->typ == 'A')
-				ft_putchar_flags('X', fd, map, 0);
+				add_to_buffer('X', map);
+//				ft_putchar_flags('X', fd, map, 0);
 			else
-				ft_putchar_flags('x', fd, map, 0);
+				add_to_buffer('x', map);
+//				ft_putchar_flags('x', fd, map, 0);
 			if (map->min == 1)
 				map->pad--;
 		}
 	}
 }
 
-void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
+void	ft_nbrflagger_flags(char *s, t_map *map)
 {
 	if ((map->plus == 1 && map->nb >= 0) || map->nb < 0)
 		map->pad--;
@@ -79,7 +84,8 @@ void	ft_nbrflagger_flags(char *s, int fd, t_map *map)
 		map->zero = 0;
 	if (map->spac == 1 && map->plus == 0 && map->hash == 0 && map->nb >= 0)
 	{
-		ft_putchar_flags(' ', fd, map, 0);
+		add_to_buffer(' ', map);
+//		ft_putchar_flags(' ', fd, map, 0);
 		map->pad--;
 	}
 	if (map->nb == 0 && map->prec == 0 && map->width > 1)
@@ -106,27 +112,29 @@ static void	norm_v3_doesnt_allow_ternaries_anymore(t_map *map, const char *s)
 		map->pad = map->width - ft_strlen(s);
 }
 
-char	*ft_nbrputter_flags(char *s, int fd, t_map *map)
+char	*ft_nbrputter_flags(char *s, t_map *map)
 {
 	s = ft_apostrophe(s, map);
 	map->pfill = map->prec - ft_strlen(s);
 	if (map->width > (int)ft_strlen(s) && map->width > map->prec)
 		norm_v3_doesnt_allow_ternaries_anymore(map, s);
-	ft_nbrflagger_flags(s, fd, map);
+	ft_nbrflagger_flags(s, map);
 	if (map->typ == 'p' && map->min == 0)
 		map->pad = map->pad - 2;
 	while (map->pad > 0 && map->min == 0 && map->zero == 0)
 	{
-		ft_putchar_flags(' ', fd, map, 0);
+		add_to_buffer(' ', map);
+//		ft_putchar_flags(' ', fd, map, 0);
 		map->pad--;
 	}
-	ft_putsign_fd(fd, map);
-	ft_put0x(fd, map);
+	ft_putsign(map);
+	ft_put0x(map);
 	while (map->zero == 1 && map->pad > 0)
 	{
-		ft_putchar_flags('0', fd, map, 0);
+		add_to_buffer('0', map);
+//		ft_putchar_flags('0', fd, map, 0);
 		map->pad--;
 	}
-	ft_lastputstuff(s, fd, map);
+	ft_lastputstuff(s, map);
 	return (s);
 }

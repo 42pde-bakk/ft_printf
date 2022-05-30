@@ -109,10 +109,9 @@ void	ft_flagfinder(const char *s, t_map *map, va_list *args)
 		ft_bonusflagfinder(s, map);
 		ft_morebonusflags(s, map);
 	}
-	return ;
 }
 
-void	ft_flagfiller(int fd, t_map *map, char *s)
+void	ft_flagfiller(t_map *map, char *s)
 {
 	if ((int)ft_strlen(s) > map->prec && map->prec != -1)
 		map->pad = map->width - map->prec;
@@ -121,10 +120,11 @@ void	ft_flagfiller(int fd, t_map *map, char *s)
 	while (map->min == 0 && map->pad > 0)
 	{
 		if (map->zero == 1)
-			ft_putchar_flags('0', fd, map, 0);
+			add_to_buffer('0', map);
+//			ft_putchar_flags('0', fd, map, 0);
 		else
-			ft_putchar_flags(' ', fd, map, 0);
+			add_to_buffer(' ', map);
+//			ft_putchar_flags(' ', fd, map, 0);
 		map->pad--;
 	}
-	return ;
 }

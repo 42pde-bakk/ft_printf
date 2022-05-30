@@ -17,7 +17,7 @@ int	ft_typefinder5(const char *s, t_map *map, va_list *args)
 {
 	if (s[map->pos] == '%')
 	{
-		ft_putchar_flags('%', map->fd, map, 1);
+		ft_putchar_flags('%', map, 1);
 		map->pos++;
 		return (1);
 	}
@@ -38,7 +38,7 @@ int	ft_typefinder4(const char *s, t_map *map, va_list *args)
 	{
 		ptr = va_arg(*args, void *);
 		string = ft_ultoa((unsigned long long)ptr, 16, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -63,7 +63,7 @@ int	ft_typefinder3(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -72,7 +72,7 @@ int	ft_typefinder3(const char *s, t_map *map, va_list *args)
 	{
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -89,7 +89,7 @@ int	ft_typefinder2(const char *s, t_map *map, va_list *args)
 	{
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 8, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -98,7 +98,7 @@ int	ft_typefinder2(const char *s, t_map *map, va_list *args)
 	{
 		o = va_arg(*args, unsigned);
 		string = ft_itoa_base(o, 16, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -116,16 +116,16 @@ int	ft_typefinder(const char *s, t_map *map, va_list *args)
 	{
 		string = va_arg(*args, char *);
 		if (string == NULL)
-			ft_putstr_flags("(null)", map->fd, map, 1);
+			ft_putstr_flags("(null)", map, 1);
 		else
-			ft_putstr_flags(string, map->fd, map, 1);
+			ft_putstr_flags(string, map, 1);
 		map->pos++;
 		return (1);
 	}
 	if (s[map->pos] == 'c')
 	{
 		c = va_arg(*args, int);
-		ft_putchar_flags(c, map->fd, map, 1);
+		ft_putchar_flags(c, map, 1);
 		map->pos++;
 		return (1);
 	}

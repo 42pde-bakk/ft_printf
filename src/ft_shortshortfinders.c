@@ -35,7 +35,7 @@ int	ft_shortshortfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 8, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -44,7 +44,7 @@ int	ft_shortshortfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 16, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -63,7 +63,7 @@ int	ft_shortshortfinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -72,7 +72,7 @@ int	ft_shortshortfinder(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, int);
 		string = ft_itoa_base(u, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);

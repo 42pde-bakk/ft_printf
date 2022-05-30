@@ -26,7 +26,7 @@ int	ft_longdoublefinder(const char *s, t_map *map, va_list *args)
 		string = ft_itoa_base(ft_floatrect(f, map), 10, map, s[map->pos]);
 		decstring = ft_itoa_base(dec, 10, map, s[map->pos]);
 		string = ft_floatjoin(string, decstring, map);
-		ft_floatflagger(string, map->fd, map);
+		ft_floatflagger(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -57,7 +57,7 @@ int	ft_longfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long int);
 		string = ft_itoa_base(u, 8, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string,  map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -66,7 +66,7 @@ int	ft_longfinder2(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long int);
 		string = ft_itoa_base(u, 16, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -85,7 +85,7 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	{
 		i = va_arg(*args, long int);
 		string = ft_itoa_base(i, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);
@@ -94,7 +94,7 @@ int	ft_longfinder(const char *s, t_map *map, va_list *args)
 	{
 		u = va_arg(*args, unsigned long int);
 		string = ft_itoa_base(u, 10, map, s[map->pos]);
-		string = ft_nbrputter_flags(string, map->fd, map);
+		string = ft_nbrputter_flags(string, map);
 		free(string);
 		map->pos++;
 		return (1);

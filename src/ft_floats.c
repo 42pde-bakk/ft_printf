@@ -39,7 +39,7 @@ long long	ft_divpower(long long nb)
 	return (result);
 }
 
-void	ft_floathandler(double f, long long base, t_map *map)
+void	ft_floathandler(double f, int base, t_map *map)
 {
 	char		*string;
 	char		*decstring;
@@ -49,9 +49,8 @@ void	ft_floathandler(double f, long long base, t_map *map)
 	string = ft_itoa_base(ft_floatrect(f, map), base, map, map->typ);
 	decstring = ft_itoa_base(dec, base, map, map->typ);
 	string = ft_floatjoin(string, decstring, map);
-	ft_floatflagger(string, 1, map);
+	ft_floatflagger(string, map);
 	free(string);
-	return ;
 }
 
 void	ft_science(double f, t_map *map)
@@ -62,7 +61,6 @@ void	ft_science(double f, t_map *map)
 	map->sci = (long long)f;
 	f = f / div;
 	ft_floathandler(f, 10, map);
-	return ;
 }
 
 int	ft_floatfinder(const char *s, t_map *map, va_list *args)
